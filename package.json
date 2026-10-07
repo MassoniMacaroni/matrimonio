@@ -3,10 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "node scripts/patch-puck.mjs && next dev",
+    "build": "node scripts/patch-puck.mjs && next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "postinstall": "node scripts/patch-puck.mjs"
   },
   "dependencies": {
     "@puckeditor/core": "^0.24.0-canary.fcfd4b94",

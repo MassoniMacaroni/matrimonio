@@ -1,11 +1,17 @@
 import type { Metadata, Viewport } from "next";
-import { Alex_Brush, Playfair_Display, Plus_Jakarta_Sans } from "next/font/google";
+import { Alex_Brush, Fraunces, Playfair_Display, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 
 const alexBrush = Alex_Brush({
   weight: "400",
   subsets: ["latin"],
   variable: "--font-script",
+  display: "swap",
+});
+
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  variable: "--font-fraunces",
   display: "swap",
 });
 
@@ -40,9 +46,13 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${alexBrush.variable} ${playfair.variable} ${plusJakarta.variable} h-full antialiased`}
+      suppressHydrationWarning
+      className={`${fraunces.variable} ${alexBrush.variable} ${playfair.variable} ${plusJakarta.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col font-sans bg-[#f6efe5] text-[#4a2824] selection:bg-[#f2cdc7] selection:text-[#b3392d]">
+      <body
+        suppressHydrationWarning
+        className="min-h-full flex flex-col font-sans bg-[#f6efe5] text-[#4a2824] selection:bg-[#f2cdc7] selection:text-[#b3392d]"
+      >
         {children}
       </body>
     </html>

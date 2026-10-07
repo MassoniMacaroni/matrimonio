@@ -1,8 +1,9 @@
 @import "tailwindcss";
 
 @theme {
+  --font-display: var(--font-fraunces), Georgia, serif;
+  --font-serif: var(--font-fraunces), Georgia, serif;
   --font-script: var(--font-script), cursive;
-  --font-serif: var(--font-serif), Georgia, serif;
   --font-sans: var(--font-sans), system-ui, sans-serif;
   --color-wedding-red: #b3392d;
   --color-wedding-red-hover: #982f25;
@@ -27,12 +28,16 @@ body {
     radial-gradient(circle at 80% 70%, rgba(180, 140, 100, 0.05), transparent 40%);
 }
 
+.font-display {
+  font-family: var(--font-fraunces), Georgia, serif;
+}
+
 .font-script {
   font-family: var(--font-script);
 }
 
 .font-serif {
-  font-family: var(--font-serif);
+  font-family: var(--font-fraunces), Georgia, serif;
 }
 
 .btn-wedding-pill {

@@ -2,6 +2,9 @@ import type { Config } from "@puckeditor/core";
 import { HeroBlock, HeroBlockProps } from "./components/blocks/HeroBlock";
 import { CountdownBlock, CountdownBlockProps } from "./components/blocks/CountdownBlock";
 import { SaveTheDateBlock, SaveTheDateBlockProps } from "./components/blocks/SaveTheDateBlock";
+import { WineStreamDetailsBlock, WineStreamDetailsBlockProps } from "./components/blocks/WineStreamDetailsBlock";
+import { CelebrationPopperBlock, CelebrationPopperBlockProps } from "./components/blocks/CelebrationPopperBlock";
+import { CalendarReminderBlock, CalendarReminderBlockProps } from "./components/blocks/CalendarReminderBlock";
 import { LocationBlock, LocationBlockProps } from "./components/blocks/LocationBlock";
 import { TimelineBlock, TimelineBlockProps } from "./components/blocks/TimelineBlock";
 import { DetailsBlock, DetailsBlockProps } from "./components/blocks/DetailsBlock";
@@ -15,6 +18,9 @@ export type Props = {
   HeroBlock: HeroBlockProps;
   CountdownBlock: CountdownBlockProps;
   SaveTheDateBlock: SaveTheDateBlockProps;
+  WineStreamDetailsBlock: WineStreamDetailsBlockProps;
+  CelebrationPopperBlock: CelebrationPopperBlockProps;
+  CalendarReminderBlock: CalendarReminderBlockProps;
   LocationBlock: LocationBlockProps;
   TimelineBlock: TimelineBlockProps;
   DetailsBlock: DetailsBlockProps;
@@ -27,12 +33,20 @@ export type Props = {
 
 export const config: Config<Props> = {
   categories: {
-    wedding: {
-      title: "Wedding Blocks",
+    saveTheDate: {
+      title: "Save The Date Blocks",
       components: [
         "HeroBlock",
-        "CountdownBlock",
         "SaveTheDateBlock",
+        "CountdownBlock",
+        "WineStreamDetailsBlock",
+        "CelebrationPopperBlock",
+        "CalendarReminderBlock",
+      ],
+    },
+    invitation: {
+      title: "Full Wedding Invite Blocks",
+      components: [
         "LocationBlock",
         "TimelineBlock",
         "DetailsBlock",
@@ -40,8 +54,11 @@ export const config: Config<Props> = {
         "GiftBlock",
         "StoryCardBlock",
         "RsvpBlock",
-        "FooterBlock",
       ],
+    },
+    shared: {
+      title: "Footer & Shared Blocks",
+      components: ["FooterBlock"],
     },
   },
   components: {
@@ -50,9 +67,28 @@ export const config: Config<Props> = {
         headline: { type: "text", label: "Headline" },
         names: { type: "text", label: "Couple Names" },
         dateText: { type: "text", label: "Date" },
+        locationText: { type: "text", label: "Location" },
+        illustrationType: {
+          type: "select",
+          label: "Illustration",
+          options: [
+            { label: "Reaching Hands", value: "hands" },
+            { label: "Bride & Groom Doodle", value: "couple" },
+            { label: "Toasting Champagne Glasses", value: "champagne" },
+            { label: "Cheeky Twin Cherries", value: "cherries" },
+          ],
+        },
         buttonText: { type: "text", label: "Button Label" },
         buttonLink: { type: "text", label: "Button URL / Anchor" },
         welcomeMessage: { type: "textarea", label: "Welcome Message" },
+        showBottomDoodle: {
+          type: "radio",
+          label: "Show Bottom Couple Doodle",
+          options: [
+            { label: "Yes", value: true },
+            { label: "No", value: false },
+          ],
+        },
         showDivider: {
           type: "radio",
           label: "Show Divider",
@@ -63,33 +99,32 @@ export const config: Config<Props> = {
         },
       },
       defaultProps: {
-        headline: "WE'RE GETTING MARRIED!",
+        headline: "SAVE THE DATE",
         names: "Jules & Jon",
         dateText: "Saturday, September 18th 2027",
-        buttonText: "Open Invitation",
-        buttonLink: "#countdown",
+        locationText: "The Rocks, Sydney · Australia",
+        illustrationType: "hands",
+        buttonText: "",
+        buttonLink: "",
         welcomeMessage:
-          "No happiness is complete without the presence of our dearest ones. With great joy, we invite you to witness and celebrate our wedding day.",
+          "We're tying the knot! Save our date on your calendar. Formal invitations, travel details & RSVP to follow.",
+        showBottomDoodle: false,
         showDivider: true,
       },
       render: (props) => <HeroBlock {...props} />,
     },
 
-    CountdownBlock: {
-      fields: {
-        title: { type: "text", label: "Title" },
-        targetDate: { type: "text", label: "Target ISO Date" },
-      },
-      defaultProps: {
-        title: "Counting Days",
-        targetDate: "2027-09-18T15:00:00",
-      },
-      render: (props) => <CountdownBlock {...props} />,
-    },
-
     SaveTheDateBlock: {
       fields: {
         title: { type: "text", label: "Title" },
+        fontStyle: {
+          type: "select",
+          label: "Title Font Style",
+          options: [
+            { label: "Retro Chunky Serif", value: "retro" },
+            { label: "Calligraphy Script", value: "script" },
+          ],
+        },
         monthYearText: { type: "text", label: "Month & Year" },
         targetDay: { type: "number", label: "Target Day (Day of Month)" },
         timeNote: { type: "text", label: "Time Note" },
@@ -103,13 +138,124 @@ export const config: Config<Props> = {
         },
       },
       defaultProps: {
-        title: "Save The Date",
+        title: "save the date",
+        fontStyle: "retro",
         monthYearText: "Saturday, September 2027",
         targetDay: 18,
-        timeNote: "Time to be announced",
+        timeNote: "Formal invitation & details to follow",
         showDivider: false,
       },
       render: (props) => <SaveTheDateBlock {...props} />,
+    },
+
+    CountdownBlock: {
+      fields: {
+        title: { type: "text", label: "Title" },
+        fontStyle: {
+          type: "select",
+          label: "Title Font Style",
+          options: [
+            { label: "Retro Chunky Serif", value: "retro" },
+            { label: "Calligraphy Script", value: "script" },
+          ],
+        },
+        targetDate: { type: "text", label: "Target ISO Date" },
+      },
+      defaultProps: {
+        title: "counting the days",
+        fontStyle: "retro",
+        targetDate: "2027-09-18T15:00:00",
+      },
+      render: (props) => <CountdownBlock {...props} />,
+    },
+
+    WineStreamDetailsBlock: {
+      fields: {
+        title: { type: "text", label: "Title" },
+        subtitle: { type: "text", label: "Subtitle" },
+        item1Heading: { type: "text", label: "Item 1 Heading" },
+        item1Body: { type: "textarea", label: "Item 1 Text" },
+        item2Heading: { type: "text", label: "Item 2 Heading" },
+        item2Body: { type: "textarea", label: "Item 2 Text" },
+        item3Heading: { type: "text", label: "Item 3 Heading" },
+        item3Body: { type: "textarea", label: "Item 3 Text" },
+        item4Heading: { type: "text", label: "Item 4 Heading" },
+        item4Body: { type: "textarea", label: "Item 4 Text" },
+        showDivider: {
+          type: "radio",
+          label: "Show Divider",
+          options: [
+            { label: "Yes", value: true },
+            { label: "No", value: false },
+          ],
+        },
+      },
+      defaultProps: {
+        title: "the details",
+        subtitle: "save the date for our celebration",
+        item1Heading: "when",
+        item1Body: "Saturday, September 18th, 2027",
+        item2Heading: "where",
+        item2Body: "The Rocks, Sydney · New South Wales, Australia",
+        item3Heading: "what to expect",
+        item3Body:
+          "An unforgettable evening of great food, wine, and dancing. Formal invitations & RSVP will follow!",
+        item4Heading: "who to contact",
+        item4Body: "Have questions in the meantime? Reach us anytime at hello@julesnjon.com",
+        showDivider: true,
+      },
+      render: (props) => <WineStreamDetailsBlock {...props} />,
+    },
+
+    CelebrationPopperBlock: {
+      fields: {
+        title: { type: "text", label: "Title" },
+        subtitle: { type: "text", label: "Subtitle" },
+        showDivider: {
+          type: "radio",
+          label: "Show Divider",
+          options: [
+            { label: "Yes", value: true },
+            { label: "No", value: false },
+          ],
+        },
+      },
+      defaultProps: {
+        title: "celebrate with us",
+        subtitle: "save the date & toast the happy couple!",
+        showDivider: true,
+      },
+      render: (props) => <CelebrationPopperBlock {...props} />,
+    },
+
+    CalendarReminderBlock: {
+      fields: {
+        title: { type: "text", label: "Title" },
+        subtitle: { type: "text", label: "Subtitle" },
+        eventName: { type: "text", label: "Event Name" },
+        eventDate: { type: "text", label: "Event Date (YYYYMMDD)" },
+        eventLocation: { type: "text", label: "Event Location" },
+        eventDetails: { type: "textarea", label: "Event Details" },
+        showDivider: {
+          type: "radio",
+          label: "Show Divider",
+          options: [
+            { label: "Yes", value: true },
+            { label: "No", value: false },
+          ],
+        },
+      },
+      defaultProps: {
+        title: "mark your calendar",
+        subtitle: "save the date so you won't miss our big day!",
+        eventName: "Jules & Jon Wedding",
+        eventDate: "20270918",
+        eventLocation: "The Rocks, Sydney NSW, Australia",
+        eventDetails:
+          "Save the date for the wedding celebration of Jules & Jon! Formal invitation to follow.",
+        showDivider: false,
+      },
+      render: (props) => <CalendarReminderBlock {...props} />,
     },
 
     LocationBlock: {
@@ -295,7 +441,7 @@ export const config: Config<Props> = {
       },
       defaultProps: {
         message:
-          "We are grateful for the love and support of our family and friends. Your presence will make our day more special, and we look forward to celebrating with joy and creating unforgettable memories together.",
+          "We can't wait to celebrate our special day with all of our dearest family and friends. Formal invitations and RSVP details to follow!",
         signature: "Jules & Jon",
         domain: "julesnjon.com",
       },

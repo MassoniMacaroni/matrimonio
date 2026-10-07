@@ -1,110 +1,75 @@
 {
   "/": {
+    "root": {
+      "props": {
+        "title": "Jules & Jon | Save The Date · September 18, 2027"
+      }
+    },
     "content": [
       {
         "type": "HeroBlock",
         "props": {
           "id": "HeroBlock-1",
-          "headline": "WE'RE GETTING MARRIED!",
+          "headline": "SAVE THE DATE",
           "names": "Jules & Jon",
           "dateText": "Saturday, September 18th 2027",
-          "buttonText": "Open Invitation",
-          "buttonLink": "#countdown",
-          "welcomeMessage": "No happiness is complete without the presence of our dearest ones. With great joy, we invite you to witness and celebrate our wedding day.",
+          "locationText": "The Rocks, Sydney · Australia",
+          "illustrationType": "hands",
+          "buttonText": "",
+          "buttonLink": "",
+          "welcomeMessage": "We're tying the knot! Save our date on your calendar. Formal invitations, details & RSVP to follow.",
+          "showBottomDoodle": false,
           "showDivider": true
-        }
-      },
-      {
-        "type": "CountdownBlock",
-        "props": {
-          "id": "CountdownBlock-1",
-          "title": "Counting Days",
-          "targetDate": "2027-09-18T15:00:00"
         }
       },
       {
         "type": "SaveTheDateBlock",
         "props": {
           "id": "SaveTheDateBlock-1",
-          "title": "Save The Date",
+          "title": "save the date",
+          "fontStyle": "retro",
           "monthYearText": "Saturday, September 2027",
           "targetDay": 18,
-          "timeNote": "Time to be announced",
+          "timeNote": "Formal invitation & details to follow",
           "showDivider": false
         }
       },
       {
-        "type": "LocationBlock",
+        "type": "WineStreamDetailsBlock",
         "props": {
-          "id": "LocationBlock-1",
-          "title": "Location",
-          "areaText": "The Rocks, Sydney",
-          "ceremonyVenue": "Ceremony · The Garrison Church",
-          "receptionVenue": "Reception · The Oriana",
-          "mapsUrl": "https://maps.google.com/?q=The+Rocks+Sydney",
-          "buttonText": "Google Maps",
+          "id": "WineStreamDetailsBlock-1",
+          "title": "the details",
+          "subtitle": "save the date for our celebration",
+          "item1Heading": "when",
+          "item1Body": "Saturday, September 18th, 2027",
+          "item2Heading": "where",
+          "item2Body": "The Rocks, Sydney · New South Wales, Australia",
+          "item3Heading": "what to expect",
+          "item3Body": "An unforgettable evening of great food, wine, and dancing. Formal invitations & RSVP will follow!",
+          "item4Heading": "who to contact",
+          "item4Body": "Have questions in the meantime? Reach us anytime at hello@julesnjon.com",
           "showDivider": true
         }
       },
       {
-        "type": "TimelineBlock",
+        "type": "CelebrationPopperBlock",
         "props": {
-          "id": "TimelineBlock-1",
-          "title": "Wedding Timeline",
-          "subtitle": "Schedule & timings will be updated closer to our wedding day",
+          "id": "CelebrationPopperBlock-1",
+          "title": "celebrate with us",
+          "subtitle": "save the date & toast the happy couple!",
           "showDivider": true
         }
       },
       {
-        "type": "DetailsBlock",
+        "type": "CalendarReminderBlock",
         "props": {
-          "id": "DetailsBlock-1",
-          "title": "Wedding Details",
-          "accommodationTitle": "Accommodation",
-          "accommodationText": "For your convenience, hotel suggestions and room blocks around The Rocks and Sydney CBD will be shared soon to help plan your stay.",
-          "transportationTitle": "Transportation",
-          "transportationText": "The Garrison Church and The Oriana are centrally located in The Rocks, Sydney. Circular Quay station (trains, ferries, and light rail) is within a brief walking distance.",
-          "showDivider": true
-        }
-      },
-      {
-        "type": "GiftBlock",
-        "props": {
-          "id": "GiftBlock-1",
-          "title": "Wedding Gift",
-          "message": "Your presence at our wedding is the greatest gift of all. If you would like to bless us further, a contribution to our wishing well would mean the world to us as we embark on this exciting chapter together.",
-          "buttonText": "Wishing Well",
-          "buttonLink": "#wishing-well",
-          "showDivider": true
-        }
-      },
-      {
-        "type": "AttireGuideBlock",
-        "props": {
-          "id": "AttireGuideBlock-1",
-          "title": "Attire Guide",
-          "attireType": "Black Tie",
-          "description": "We invite our guests to dress in formal black-tie attire—tuxedos or formal dark suits for gentlemen, and floor-length gowns or elegant formal dresses for ladies.",
-          "showDivider": true
-        }
-      },
-      {
-        "type": "StoryCardBlock",
-        "props": {
-          "id": "StoryCardBlock-1",
-          "title": "Love Story",
-          "tagline": "A glimpse into our journey together",
-          "showDivider": true
-        }
-      },
-      {
-        "type": "RsvpBlock",
-        "props": {
-          "id": "RsvpBlock-1",
-          "deadlineText": "Kindly RSVP by July 18th, 2027",
-          "buttonText": "RSVP",
-          "buttonLink": "mailto:rsvp@julesnjon.com?subject=Wedding%20RSVP",
-          "note": "to help us with final arrangements for our special day.",
+          "id": "CalendarReminderBlock-1",
+          "title": "mark your calendar",
+          "subtitle": "save the date so you won't miss our big day!",
+          "eventName": "Jules & Jon Wedding",
+          "eventDate": "20270918",
+          "eventLocation": "The Rocks, Sydney NSW, Australia",
+          "eventDetails": "Save the date for the wedding celebration of Jules & Jon! Formal invitation to follow.",
           "showDivider": false
         }
       },
@@ -112,16 +77,21 @@
         "type": "FooterBlock",
         "props": {
           "id": "FooterBlock-1",
-          "message": "We are grateful for the love and support of our family and friends. Your presence will make our day more special, and we look forward to celebrating with joy and creating unforgettable memories together.",
+          "message": "We can't wait to celebrate our special day with all of our family and friends. Formal invitations and RSVP details to follow!",
           "signature": "Jules & Jon",
           "domain": "julesnjon.com"
         }
+      },
+      {
+        "type": "CountdownBlock",
+        "props": {
+          "id": "CountdownBlock-1",
+          "title": "counting the days",
+          "fontStyle": "retro",
+          "targetDate": "2027-09-18T15:00:00"
+        }
       }
     ],
-    "root": {
-      "props": {
-        "title": "Jules & Jon | Wedding Celebration"
-      }
-    }
+    "zones": {}
   }
 }

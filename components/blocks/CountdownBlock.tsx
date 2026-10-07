@@ -7,11 +7,13 @@ import { LeafFlourish } from "../decorations/Illustrations";
 export type CountdownBlockProps = {
   title?: string;
   targetDate?: string; // ISO date format, e.g. "2027-09-18T15:00:00"
+  fontStyle?: "retro" | "script";
 };
 
 export const CountdownBlock: React.FC<CountdownBlockProps> = ({
-  title = "Counting Days",
+  title = "counting the days",
   targetDate = "2027-09-18T15:00:00",
+  fontStyle = "retro",
 }) => {
   const shouldReduceMotion = useReducedMotion();
   const [timeLeft, setTimeLeft] = useState<{
@@ -45,21 +47,30 @@ export const CountdownBlock: React.FC<CountdownBlockProps> = ({
   }, [targetDate]);
 
   return (
-    <section id="countdown" className="py-6 px-4 text-center max-w-xl mx-auto">
+    <section id="countdown" className="py-8 px-4 text-center max-w-xl mx-auto">
       <motion.div
-        initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 15 }}
+        initial={false}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
         className="flex flex-col items-center justify-center"
       >
-        {/* Script Title: Counting Days */}
-        <h3 className="font-script text-4xl sm:text-5xl text-[#b3392d] tracking-wide mb-3">
+        {/* Title in chunky retro Fraunces font or script */}
+        <h3
+          className={`${
+            fontStyle === "script"
+              ? "font-script text-4xl sm:text-5xl"
+              : "font-display font-extrabold text-3xl sm:text-4xl md:text-5xl lowercase tracking-normal"
+          } text-[#b3392d] mb-4`}
+        >
           {title}
         </h3>
 
         {/* Countdown timer with colons and botanical flanks */}
-        <div className="relative flex items-center justify-center gap-3 sm:gap-6 mt-1 mb-2 px-6">
+        <div
+          suppressHydrationWarning
+          className="relative flex items-center justify-center gap-3 sm:gap-6 mt-1 mb-2 px-6"
+        >
           {/* Left Leaf Flourish */}
           <div className="hidden xs:block sm:block text-[#b3392d]">
             <LeafFlourish flip />

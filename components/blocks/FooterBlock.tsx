@@ -11,7 +11,7 @@ export type FooterBlockProps = {
 };
 
 export const FooterBlock: React.FC<FooterBlockProps> = ({
-  message = "We are grateful for the love and support of our family and friends. Your presence will make our day more special, and we look forward to celebrating with joy and creating unforgettable memories together.",
+  message = "We can't wait to celebrate our special day with all of our dearest family and friends. Formal invitations and RSVP details to follow!",
   signature = "Jules & Jon",
   domain = "julesnjon.com",
 }) => {
@@ -20,13 +20,13 @@ export const FooterBlock: React.FC<FooterBlockProps> = ({
   return (
     <footer className="mt-8 pt-8 pb-16 px-4 text-center max-w-xl mx-auto">
       <motion.div
-        initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 15 }}
+        initial={false}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
         className="flex flex-col items-center"
       >
-        {/* Washi-taped photo card */}
+        {/* Washi-taped card */}
         <div className="relative bg-white/70 border border-[#b3392d]/25 p-5 pt-8 pb-4 rounded-sm shadow-2xs max-w-xs mx-auto mb-6">
           {/* Centered Washi Tape strip */}
           <div className="absolute -top-3 left-1/2 -translate-x-1/2">
@@ -39,12 +39,12 @@ export const FooterBlock: React.FC<FooterBlockProps> = ({
         </div>
 
         {/* Closing heartfelt text */}
-        <p className="max-w-md mx-auto text-xs sm:text-sm text-[#b3392d]/85 font-medium leading-relaxed mb-6 px-2">
+        <p className="max-w-md mx-auto text-xs sm:text-sm text-[#4a2824]/90 font-serif leading-relaxed mb-6 px-2">
           {message}
         </p>
 
-        {/* Signature */}
-        <h4 className="text-xl sm:text-2xl font-serif font-bold tracking-[0.25em] text-[#b3392d] uppercase">
+        {/* Signature in chunky Fraunces font */}
+        <h4 className="text-2xl sm:text-3xl font-display font-extrabold tracking-normal text-[#b3392d]">
           {signature}
         </h4>
 

@@ -9,14 +9,16 @@ export type SaveTheDateBlockProps = {
   monthYearText?: string;
   targetDay?: number;
   timeNote?: string;
+  fontStyle?: "retro" | "script";
   showDivider?: boolean;
 };
 
 export const SaveTheDateBlock: React.FC<SaveTheDateBlockProps> = ({
-  title = "Save The Date",
+  title = "save the date",
   monthYearText = "Saturday, September 2027",
   targetDay = 18,
-  timeNote = "Time to be announced",
+  timeNote = "Formal invitation & details to follow",
+  fontStyle = "retro",
   showDivider = false,
 }) => {
   const shouldReduceMotion = useReducedMotion();
@@ -25,16 +27,22 @@ export const SaveTheDateBlock: React.FC<SaveTheDateBlockProps> = ({
   const days = [targetDay - 2, targetDay - 1, targetDay, targetDay + 1, targetDay + 2];
 
   return (
-    <section className="py-6 px-4 text-center max-w-xl mx-auto">
+    <section className="py-8 px-4 text-center max-w-xl mx-auto">
       <motion.div
-        initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 15 }}
+        initial={false}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
         className="flex flex-col items-center justify-center"
       >
-        {/* Script title: Save The Date */}
-        <h3 className="font-script text-4xl sm:text-5xl text-[#b3392d] tracking-wide mb-2">
+        {/* Title in chunky retro Fraunces font or script */}
+        <h3
+          className={`${
+            fontStyle === "script"
+              ? "font-script text-4xl sm:text-5xl"
+              : "font-display font-extrabold text-4xl sm:text-5xl lowercase tracking-normal"
+          } text-[#b3392d] mb-2`}
+        >
           {title}
         </h3>
 

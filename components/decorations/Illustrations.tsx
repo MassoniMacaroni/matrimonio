@@ -505,3 +505,531 @@ export const WashiTape: React.FC<{ className?: string }> = ({ className = "" }) 
     }}
   />
 );
+
+// Hand holding wine / champagne bottle pouring stream (inspired directly by reference image)
+export const WineBottlePourIllustration: React.FC<{
+  className?: string;
+  variant?: "bottle-only" | "with-short-stream" | "hand-only";
+}> = ({ className = "", variant = "with-short-stream" }) => (
+  <div className={`flex justify-center items-center select-none ${className}`}>
+    <svg
+      viewBox="0 0 320 220"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className="w-56 sm:w-64 h-auto overflow-visible"
+    >
+      {/* Hand arm sleeve coming from top right */}
+      <path
+        d="M310 10 L 260 25 L 250 48 L 305 38 Z"
+        stroke={STROKE_COLOR}
+        strokeWidth="1.6"
+        strokeLinecap="round"
+      />
+      {/* Wrist / hand holding the bottle */}
+      <path
+        d="M260 25 C 245 28, 235 34, 225 45"
+        stroke={STROKE_COLOR}
+        strokeWidth="1.6"
+        strokeLinecap="round"
+      />
+      {/* Fingers wrapped over the bottle */}
+      <path
+        d="M225 45 C 220 40, 212 42, 210 50 C 208 58, 218 64, 226 62"
+        stroke={STROKE_COLOR}
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+      <path
+        d="M232 48 C 228 42, 220 44, 218 52 C 216 60, 224 65, 232 63"
+        stroke={STROKE_COLOR}
+        strokeWidth="1.4"
+        strokeLinecap="round"
+      />
+      <path
+        d="M240 50 C 236 44, 228 46, 226 54 C 224 62, 232 67, 240 65"
+        stroke={STROKE_COLOR}
+        strokeWidth="1.4"
+        strokeLinecap="round"
+      />
+      {/* Thumb wrapped around bottom */}
+      <path
+        d="M245 32 C 240 38, 235 44, 235 48"
+        stroke={STROKE_COLOR}
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+
+      {/* Wine / Champagne Bottle tilted diagonally (neck pointing down-left) */}
+      {/* Bottle base / punt */}
+      <path
+        d="M272 50 C 285 55, 282 75, 268 80"
+        stroke={STROKE_COLOR}
+        strokeWidth="1.8"
+        strokeLinecap="round"
+      />
+      {/* Bottle body */}
+      <path
+        d="M268 80 L 195 56"
+        stroke={STROKE_COLOR}
+        strokeWidth="1.8"
+        strokeLinecap="round"
+      />
+      <path
+        d="M272 50 L 205 28"
+        stroke={STROKE_COLOR}
+        strokeWidth="1.8"
+        strokeLinecap="round"
+      />
+      {/* Bottle shoulder tapering to neck */}
+      <path
+        d="M195 56 C 180 50, 172 44, 155 38"
+        stroke={STROKE_COLOR}
+        strokeWidth="1.8"
+        strokeLinecap="round"
+      />
+      <path
+        d="M205 28 C 190 26, 178 30, 160 34"
+        stroke={STROKE_COLOR}
+        strokeWidth="1.8"
+        strokeLinecap="round"
+      />
+      {/* Bottle neck */}
+      <path
+        d="M155 38 L 132 32"
+        stroke={STROKE_COLOR}
+        strokeWidth="1.8"
+        strokeLinecap="round"
+      />
+      <path
+        d="M160 34 L 135 28"
+        stroke={STROKE_COLOR}
+        strokeWidth="1.8"
+        strokeLinecap="round"
+      />
+      {/* Bottle lip / mouth opening */}
+      <ellipse
+        cx="133"
+        cy="30"
+        rx="3"
+        ry="6"
+        transform="rotate(-20 133 30)"
+        stroke={STROKE_COLOR}
+        strokeWidth="1.8"
+        fill="#f6efe5"
+      />
+      {/* Bottle label */}
+      <path
+        d="M215 36 L 250 48 L 246 64 L 210 52 Z"
+        stroke={STROKE_COLOR}
+        strokeWidth="1.2"
+        strokeDasharray="2 2"
+      />
+      <path
+        d="M228 46 Q 235 48, 238 52"
+        stroke={STROKE_COLOR}
+        strokeWidth="1"
+      />
+
+      {/* Wine stream pouring from bottle opening */}
+      {variant !== "bottle-only" && (
+        <>
+          {/* Main smooth stream */}
+          <path
+            d="M130 31 C 110 38, 90 60, 95 85 C 100 115, 140 135, 150 160 C 160 185, 145 205, 140 220"
+            stroke={STROKE_COLOR}
+            strokeWidth="3.2"
+            strokeLinecap="round"
+          />
+          {/* Parallel wavy stream highlight */}
+          <path
+            d="M132 34 C 114 42, 98 62, 102 85 C 107 112, 144 133, 154 158 C 164 182, 150 205, 145 220"
+            stroke={STROKE_COLOR}
+            strokeWidth="1.2"
+            strokeOpacity="0.4"
+          />
+          {/* Splash droplets */}
+          <circle cx="118" cy="48" r="2" fill={STROKE_COLOR} />
+          <circle cx="106" cy="68" r="1.5" fill={STROKE_COLOR} />
+          <circle cx="125" cy="80" r="1.8" fill={STROKE_COLOR} />
+          <circle cx="152" cy="115" r="2" fill={STROKE_COLOR} />
+          {/* Cute sparkle stars near the pour */}
+          <path
+            d="M148 60 L 150 65 L 155 67 L 150 69 L 148 74 L 146 69 L 141 67 L 146 65 Z"
+            fill={STROKE_COLOR}
+            opacity="0.8"
+          />
+          <path
+            d="M80 95 L 81 99 L 85 100 L 81 101 L 80 105 L 79 101 L 75 100 L 79 99 Z"
+            fill={STROKE_COLOR}
+            opacity="0.7"
+          />
+        </>
+      )}
+    </svg>
+  </div>
+);
+
+// Party poppers / celebration crackers bursting with stars & ribbons
+export const PartyPoppersIllustration: React.FC<{
+  className?: string;
+  count?: "single" | "pair";
+}> = ({ className = "", count = "pair" }) => (
+  <div className={`flex justify-center items-center select-none ${className}`}>
+    <svg
+      viewBox="0 0 240 140"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className="w-44 sm:w-52 h-auto overflow-visible"
+    >
+      {/* Left Popper Cone */}
+      <g transform="translate(10, 20)">
+        {/* Cone body */}
+        <polygon
+          points="40,85 75,55 85,68"
+          stroke={STROKE_COLOR}
+          strokeWidth="1.6"
+          fill="#f6efe5"
+          strokeLinejoin="round"
+        />
+        {/* Striped pattern on cone */}
+        <path d="M52 75 L 80 62" stroke={STROKE_COLOR} strokeWidth="1.2" />
+        <path d="M62 67 L 82 58" stroke={STROKE_COLOR} strokeWidth="1.2" />
+        {/* Popper rim oval */}
+        <ellipse
+          cx="80"
+          cy="61.5"
+          rx="5"
+          ry="9"
+          transform="rotate(30 80 61.5)"
+          stroke={STROKE_COLOR}
+          strokeWidth="1.6"
+          fill={STROKE_COLOR}
+          fillOpacity="0.15"
+        />
+        {/* Little pull string with loop */}
+        <path
+          d="M40 85 Q 32 92, 34 98 Q 36 102, 32 104"
+          stroke={STROKE_COLOR}
+          strokeWidth="1.3"
+          strokeLinecap="round"
+        />
+        <circle cx="31" cy="104" r="1.8" fill={STROKE_COLOR} />
+      </g>
+
+      {/* Right Popper Cone (if pair) */}
+      {count === "pair" && (
+        <g transform="translate(90, 20)">
+          {/* Cone body */}
+          <polygon
+            points="100,85 65,55 55,68"
+            stroke={STROKE_COLOR}
+            strokeWidth="1.6"
+            fill="#f6efe5"
+            strokeLinejoin="round"
+          />
+          {/* Striped pattern */}
+          <path d="M88 75 L 60 62" stroke={STROKE_COLOR} strokeWidth="1.2" />
+          <path d="M78 67 L 58 58" stroke={STROKE_COLOR} strokeWidth="1.2" />
+          {/* Rim */}
+          <ellipse
+            cx="60"
+            cy="61.5"
+            rx="5"
+            ry="9"
+            transform="rotate(-30 60 61.5)"
+            stroke={STROKE_COLOR}
+            strokeWidth="1.6"
+            fill={STROKE_COLOR}
+            fillOpacity="0.15"
+          />
+          {/* String */}
+          <path
+            d="M100 85 Q 108 92, 106 98 Q 104 102, 108 104"
+            stroke={STROKE_COLOR}
+            strokeWidth="1.3"
+            strokeLinecap="round"
+          />
+          <circle cx="109" cy="104" r="1.8" fill={STROKE_COLOR} />
+        </g>
+      )}
+
+      {/* Exploding celebration confetti & serpentine ribbons in the center */}
+      {/* Streamers */}
+      <path
+        d="M100 50 Q 110 30, 120 40 T 130 18"
+        stroke={STROKE_COLOR}
+        strokeWidth="1.8"
+        strokeLinecap="round"
+      />
+      <path
+        d="M85 45 Q 92 25, 105 28 T 112 10"
+        stroke={STROKE_COLOR}
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+      <path
+        d="M140 45 Q 132 25, 125 28 T 120 8"
+        stroke={STROKE_COLOR}
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+      <path
+        d="M115 55 Q 128 45, 138 52 T 150 40"
+        stroke={STROKE_COLOR}
+        strokeWidth="1.6"
+        strokeLinecap="round"
+      />
+
+      {/* Sparkles / Twinkle Stars */}
+      {/* Center big star */}
+      <path
+        d="M120 22 L 122 28 L 128 30 L 122 32 L 120 38 L 118 32 L 112 30 L 118 28 Z"
+        fill={STROKE_COLOR}
+      />
+      {/* Left medium star */}
+      <path
+        d="M95 18 L 96 22 L 100 23 L 96 24 L 95 28 L 94 24 L 90 23 L 94 22 Z"
+        fill={STROKE_COLOR}
+      />
+      {/* Right medium star */}
+      <path
+        d="M145 22 L 146 26 L 150 27 L 146 28 L 145 32 L 144 28 L 140 27 L 144 26 Z"
+        fill={STROKE_COLOR}
+      />
+
+      {/* Confetti Dots & Hearts */}
+      <circle cx="106" cy="40" r="2.5" fill={STROKE_COLOR} />
+      <circle cx="132" cy="38" r="2" fill={STROKE_COLOR} />
+      <circle cx="82" cy="32" r="1.8" fill={STROKE_COLOR} />
+      <circle cx="155" cy="32" r="2" fill={STROKE_COLOR} />
+      <circle cx="118" cy="48" r="1.8" fill={STROKE_COLOR} />
+      <circle cx="128" cy="14" r="2.2" fill={STROKE_COLOR} />
+      {/* Mini heart popping out */}
+      <path
+        d="M120 10 C 118 7, 115 8, 115 10 C 115 13, 120 15, 120 15 C 120 15, 125 13, 125 10 C 125 8, 122 7, 120 10 Z"
+        fill={STROKE_COLOR}
+      />
+    </svg>
+  </div>
+);
+
+// Toasting Champagne Coupe glasses ("Clink!")
+export const ToastingGlassesIllustration: React.FC<{ className?: string }> = ({
+  className = "",
+}) => (
+  <div className={`flex justify-center items-center select-none ${className}`}>
+    <svg
+      viewBox="0 0 160 120"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className="w-32 sm:w-36 h-auto overflow-visible"
+    >
+      {/* Left Coupe Glass (tilted right) */}
+      <g transform="translate(48, 55) rotate(14)">
+        {/* Bowl */}
+        <path
+          d="M-22 -22 C -22 0, 22 0, 22 -22 Z"
+          stroke={STROKE_COLOR}
+          strokeWidth="1.6"
+          fill="#f6efe5"
+        />
+        {/* Liquid line */}
+        <path d="M-19 -16 Q 0 -13, 19 -16" stroke={STROKE_COLOR} strokeWidth="1.2" />
+        {/* Stem */}
+        <line x1="0" y1="0" x2="0" y2="28" stroke={STROKE_COLOR} strokeWidth="1.6" />
+        {/* Base */}
+        <ellipse cx="0" cy="28" rx="14" ry="3" stroke={STROKE_COLOR} strokeWidth="1.5" />
+      </g>
+
+      {/* Right Coupe Glass (tilted left) */}
+      <g transform="translate(112, 55) rotate(-14)">
+        {/* Bowl */}
+        <path
+          d="M-22 -22 C -22 0, 22 0, 22 -22 Z"
+          stroke={STROKE_COLOR}
+          strokeWidth="1.6"
+          fill="#f6efe5"
+        />
+        {/* Liquid line */}
+        <path d="M-19 -16 Q 0 -13, 19 -16" stroke={STROKE_COLOR} strokeWidth="1.2" />
+        {/* Stem */}
+        <line x1="0" y1="0" x2="0" y2="28" stroke={STROKE_COLOR} strokeWidth="1.6" />
+        {/* Base */}
+        <ellipse cx="0" cy="28" rx="14" ry="3" stroke={STROKE_COLOR} strokeWidth="1.5" />
+      </g>
+
+      {/* Clinking Sparkles in center */}
+      <path
+        d="M80 18 L 81.5 24 L 88 26 L 81.5 28 L 80 34 L 78.5 28 L 72 26 L 78.5 24 Z"
+        fill={STROKE_COLOR}
+      />
+      {/* Clink sound lines */}
+      <path d="M72 16 Q 66 12, 60 14" stroke={STROKE_COLOR} strokeWidth="1.3" strokeLinecap="round" />
+      <path d="M88 16 Q 94 12, 100 14" stroke={STROKE_COLOR} strokeWidth="1.3" strokeLinecap="round" />
+      {/* Tiny bubbles */}
+      <circle cx="75" cy="38" r="1.5" fill={STROKE_COLOR} />
+      <circle cx="85" cy="40" r="1.5" fill={STROKE_COLOR} />
+      <circle cx="80" cy="46" r="1.2" fill={STROKE_COLOR} />
+    </svg>
+  </div>
+);
+
+// Vintage Postage Stamp ("SAVE THE DATE · SEP 18 2027")
+export const VintageSaveTheDateStamp: React.FC<{ className?: string }> = ({
+  className = "",
+}) => (
+  <div className={`flex justify-center items-center select-none ${className}`}>
+    <div className="relative p-2">
+      {/* Stamp container with scalloped edges */}
+      <svg
+        viewBox="0 0 160 180"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        className="w-32 sm:w-36 h-auto drop-shadow-xs rotate-[-3deg]"
+      >
+        {/* Scalloped outer border */}
+        <rect
+          x="10"
+          y="10"
+          width="140"
+          height="160"
+          rx="4"
+          fill="#fbf6ee"
+          stroke={STROKE_COLOR}
+          strokeWidth="1.5"
+        />
+        {/* Inner dashed frame */}
+        <rect
+          x="18"
+          y="18"
+          width="124"
+          height="144"
+          stroke={STROKE_COLOR}
+          strokeWidth="1.2"
+          strokeDasharray="3 3"
+        />
+        {/* Stamp text */}
+        <text
+          x="80"
+          y="38"
+          textAnchor="middle"
+          fill={STROKE_COLOR}
+          fontFamily="var(--font-sans)"
+          fontSize="9"
+          fontWeight="bold"
+          letterSpacing="0.25em"
+        >
+          POSTE D&apos;AMOUR
+        </text>
+        {/* Center Heart inside circle */}
+        <circle cx="80" cy="82" r="30" stroke={STROKE_COLOR} strokeWidth="1.4" fill="none" />
+        <path
+          d="M80 94 C 70 85, 62 76, 62 68 C 62 62, 67 58, 73 58 C 76.5 58, 79 60, 80 62 C 81 60, 83.5 58, 87 58 C 93 58, 98 62, 98 68 C 98 76, 90 85, 80 94 Z"
+          fill={STROKE_COLOR}
+        />
+        {/* Date on stamp */}
+        <text
+          x="80"
+          y="130"
+          textAnchor="middle"
+          fill={STROKE_COLOR}
+          fontFamily="var(--font-fraunces), serif"
+          fontSize="14"
+          fontWeight="bold"
+        >
+          18 · 09 · 27
+        </text>
+        <text
+          x="80"
+          y="148"
+          textAnchor="middle"
+          fill={STROKE_COLOR}
+          fontFamily="var(--font-sans)"
+          fontSize="8"
+          fontWeight="600"
+          letterSpacing="0.2em"
+        >
+          SYDNEY · NSW
+        </text>
+
+        {/* Wavy postmark cancellation lines across corner */}
+        <path
+          d="M2 130 Q 30 125, 60 130 T 120 130"
+          stroke={STROKE_COLOR}
+          strokeWidth="1.2"
+          strokeOpacity="0.7"
+        />
+        <path
+          d="M2 136 Q 30 131, 60 136 T 120 136"
+          stroke={STROKE_COLOR}
+          strokeWidth="1.2"
+          strokeOpacity="0.7"
+        />
+      </svg>
+    </div>
+  </div>
+);
+
+// Cheeky Sweet Cherries Doodle with Ribbon Bow
+export const TwinCherriesIllustration: React.FC<{ className?: string }> = ({
+  className = "",
+}) => (
+  <div className={`flex justify-center items-center select-none ${className}`}>
+    <svg
+      viewBox="0 0 100 100"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className="w-16 sm:w-20 h-auto overflow-visible"
+    >
+      {/* Left Cherry */}
+      <circle cx="34" cy="68" r="16" fill={STROKE_COLOR} />
+      <ellipse cx="30" cy="64" rx="4" ry="2" fill="#ffffff" fillOpacity="0.4" transform="rotate(-30 30 64)" />
+      {/* Right Cherry */}
+      <circle cx="68" cy="64" r="16" fill={STROKE_COLOR} />
+      <ellipse cx="64" cy="60" rx="4" ry="2" fill="#ffffff" fillOpacity="0.4" transform="rotate(-30 64 60)" />
+      {/* Stems meeting at top */}
+      <path
+        d="M34 54 C 34 32, 45 22, 52 16"
+        stroke={STROKE_COLOR}
+        strokeWidth="1.8"
+        strokeLinecap="round"
+      />
+      <path
+        d="M68 50 C 66 30, 56 22, 52 16"
+        stroke={STROKE_COLOR}
+        strokeWidth="1.8"
+        strokeLinecap="round"
+      />
+      {/* Cute little bow on stem junction */}
+      <path
+        d="M52 16 C 46 10, 38 12, 42 18 C 45 22, 50 18, 52 16 Z"
+        stroke={STROKE_COLOR}
+        strokeWidth="1.4"
+        fill="#f6efe5"
+      />
+      <path
+        d="M52 16 C 58 10, 66 12, 62 18 C 59 22, 54 18, 52 16 Z"
+        stroke={STROKE_COLOR}
+        strokeWidth="1.4"
+        fill="#f6efe5"
+      />
+      <circle cx="52" cy="16" r="2.5" fill={STROKE_COLOR} />
+      {/* Bow tails */}
+      <path d="M50 18 Q 46 24, 42 28" stroke={STROKE_COLOR} strokeWidth="1.3" strokeLinecap="round" />
+      <path d="M54 18 Q 58 24, 62 28" stroke={STROKE_COLOR} strokeWidth="1.3" strokeLinecap="round" />
+    </svg>
+  </div>
+);
+
+// Sparkle Burst / Twinkle star cluster
+export const SparkleCluster: React.FC<{ className?: string }> = ({ className = "" }) => (
+  <span className={`inline-flex items-center gap-1 text-[#b3392d] select-none ${className}`}>
+    <svg viewBox="0 0 24 24" fill="none" className="w-4 h-4 fill-current">
+      <path d="M12 2 L 13.5 9 L 20 12 L 13.5 15 L 12 22 L 10.5 15 L 4 12 L 10.5 9 Z" />
+    </svg>
+    <svg viewBox="0 0 24 24" fill="none" className="w-2.5 h-2.5 fill-current opacity-70">
+      <path d="M12 2 L 13.5 9 L 20 12 L 13.5 15 L 12 22 L 10.5 15 L 4 12 L 10.5 9 Z" />
+    </svg>
+  </span>
+);
+
