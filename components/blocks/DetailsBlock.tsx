@@ -2,66 +2,67 @@
 
 import React from "react";
 import { motion, useReducedMotion } from "framer-motion";
+import { RibbonDivider } from "../decorations/Illustrations";
 
 export type DetailsBlockProps = {
-  heading: string;
-  ceremonyTime: string;
-  venueHint: string;
-  attireHint: string;
-  note: string;
+  title?: string;
+  accommodationTitle?: string;
+  accommodationText?: string;
+  transportationTitle?: string;
+  transportationText?: string;
+  showDivider?: boolean;
 };
 
 export const DetailsBlock: React.FC<DetailsBlockProps> = ({
-  heading = "At A Glance",
-  ceremonyTime = "3:30 PM",
-  venueHint = "Yarra Valley, Victoria",
-  attireHint = "Festive & Colorful Cocktail",
-  note = "Travel, accommodation suggestions, and RSVP will be shared with the formal invitation.",
+  title = "Wedding Details",
+  accommodationTitle = "Accommodation",
+  accommodationText = "For your convenience, hotel suggestions and room blocks around The Rocks and Sydney CBD will be shared soon to help plan your stay.",
+  transportationTitle = "Transportation",
+  transportationText = "The Garrison Church and The Oriana are centrally located in The Rocks, Sydney. Circular Quay station (trains, ferries, and light rail) is within a brief walking distance.",
+  showDivider = true,
 }) => {
   const shouldReduceMotion = useReducedMotion();
 
-  const details = [
-    { label: "When", val: ceremonyTime, icon: "🕒" },
-    { label: "Where", val: venueHint, icon: "🌿" },
-    { label: "Attire", val: attireHint, icon: "👗" },
-  ];
-
   return (
-    <section className="py-8 px-4 sm:px-6">
+    <section className="py-6 px-4 text-center max-w-xl mx-auto">
       <motion.div
-        className="max-w-xl mx-auto rounded-3xl bg-amber-50/50 border border-amber-200/70 p-6 sm:p-8"
-        initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 20 }}
+        initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 15 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 0.6 }}
+        className="max-w-md mx-auto"
       >
-        <h3 className="text-xl sm:text-2xl font-serif font-bold text-stone-900 mb-6 text-center">
-          {heading}
+        {/* Script title: Wedding Details */}
+        <h3 className="font-script text-4xl sm:text-5xl text-[#b3392d] tracking-wide mb-6">
+          {title}
         </h3>
 
-        <div className="space-y-3">
-          {details.map((item) => (
-            <div
-              key={item.label}
-              className="flex items-center gap-3.5 p-3.5 rounded-2xl bg-white/90 border border-stone-200/60 shadow-2xs"
-            >
-              <span className="text-xl shrink-0">{item.icon}</span>
-              <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between w-full">
-                <span className="text-xs uppercase font-semibold text-stone-500 tracking-wider">
-                  {item.label}
-                </span>
-                <span className="text-sm sm:text-base font-medium text-stone-900">
-                  {item.val}
-                </span>
-              </div>
-            </div>
-          ))}
+        {/* Accommodation */}
+        <div className="mb-6 space-y-1.5 text-center">
+          <h4 className="text-sm font-semibold tracking-widest uppercase text-[#b3392d]">
+            {accommodationTitle}
+          </h4>
+          <p className="text-xs sm:text-sm text-[#b3392d]/85 font-medium leading-relaxed max-w-sm mx-auto">
+            {accommodationText}
+          </p>
         </div>
 
-        <p className="mt-6 text-xs sm:text-sm text-stone-600 text-center leading-relaxed italic">
-          {note}
-        </p>
+        {/* Transportation */}
+        <div className="space-y-1.5 text-center">
+          <h4 className="text-sm font-semibold tracking-widest uppercase text-[#b3392d]">
+            {transportationTitle}
+          </h4>
+          <p className="text-xs sm:text-sm text-[#b3392d]/85 font-medium leading-relaxed max-w-sm mx-auto">
+            {transportationText}
+          </p>
+        </div>
       </motion.div>
+
+      {showDivider && (
+        <div className="pt-8">
+          <RibbonDivider />
+        </div>
+      )}
     </section>
   );
 };

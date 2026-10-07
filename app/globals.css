@@ -1,26 +1,64 @@
 @import "tailwindcss";
 
+@theme {
+  --font-script: var(--font-script), cursive;
+  --font-serif: var(--font-serif), Georgia, serif;
+  --font-sans: var(--font-sans), system-ui, sans-serif;
+  --color-wedding-red: #b3392d;
+  --color-wedding-red-hover: #982f25;
+  --color-wedding-red-subtle: #fbeee9;
+  --color-wedding-paper: #f6efe5;
+  --color-wedding-paper-dark: #eee2d1;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: #f6efe5;
+  --foreground: #4a2824;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #f6efe5;
+  color: #4a2824;
+  font-family: var(--font-sans);
+  min-height: 100vh;
+  background-image: 
+    radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.45), transparent 70%),
+    radial-gradient(circle at 20% 40%, rgba(180, 140, 100, 0.05), transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(180, 140, 100, 0.05), transparent 40%);
+}
+
+.font-script {
+  font-family: var(--font-script);
+}
+
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+.btn-wedding-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: #b3392d;
+  color: #ffffff;
+  font-weight: 500;
+  letter-spacing: 0.025em;
+  padding: 0.625rem 1.75rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  box-shadow: 0 1px 3px rgba(179, 57, 45, 0.18);
+  transition: all 0.2s ease;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn-wedding-pill:hover {
+  background-color: #982f25;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(179, 57, 45, 0.22);
+}
+
+.btn-wedding-pill:active {
+  transform: translateY(0);
 }

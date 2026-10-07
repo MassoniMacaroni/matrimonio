@@ -2,117 +2,129 @@
 
 import React from "react";
 import { motion, useReducedMotion } from "framer-motion";
+import {
+  ReachingHandsIllustration,
+  CoupleDoodleIllustration,
+  RibbonDivider,
+} from "../decorations/Illustrations";
 
 export type HeroBlockProps = {
-  names: string;
-  badgeText: string;
-  dateText: string;
-  locationText: string;
-  subheading: string;
+  headline?: string;
+  names?: string;
+  dateText?: string;
+  buttonText?: string;
+  buttonLink?: string;
+  welcomeMessage?: string;
+  showDivider?: boolean;
 };
 
 export const HeroBlock: React.FC<HeroBlockProps> = ({
+  headline = "WE'RE GETTING MARRIED!",
   names = "Jules & Jon",
-  badgeText = "SAVE THE DATE",
-  dateText = "Saturday, October 10, 2026",
-  locationText = "Melbourne, Australia",
-  subheading = "We're getting married! Formal invitation to follow.",
+  dateText = "Saturday, September 18th 2027",
+  buttonText = "Open Invitation",
+  buttonLink = "#countdown",
+  welcomeMessage = "No happiness is complete without the presence of our dearest ones. With great joy, we invite you to witness and celebrate our wedding day.",
+  showDivider = true,
 }) => {
   const shouldReduceMotion = useReducedMotion();
 
-  const containerVariants = {
-    hidden: { opacity: 0, y: shouldReduceMotion ? 0 : 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: shouldReduceMotion ? 0 : 0.6,
-        staggerChildren: shouldReduceMotion ? 0 : 0.15,
-        ease: "easeOut" as const,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, scale: shouldReduceMotion ? 1 : 0.95 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: {
-        type: "spring" as const,
-        stiffness: 260,
-        damping: 20,
-      },
-    },
+  const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (buttonLink?.startsWith("#")) {
+      e.preventDefault();
+      const target = document.querySelector(buttonLink);
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth" });
+      }
+    }
   };
 
   return (
-    <section className="relative overflow-hidden py-16 px-4 sm:py-24 sm:px-6 text-center">
-      {/* Decorative kitschy background sparkles */}
-      <div className="absolute inset-0 pointer-events-none -z-10 flex items-center justify-center opacity-40">
-        <div className="w-80 h-80 rounded-full bg-rose-200/40 blur-3xl" />
-        <div className="w-72 h-72 rounded-full bg-amber-100/50 blur-3xl -ml-20" />
-      </div>
-
+    <section className="relative pt-12 pb-6 px-4 sm:px-6 text-center max-w-xl mx-auto">
+      {/* Top Headline: WE'RE GETTING MARRIED! */}
       <motion.div
-        className="max-w-xl mx-auto flex flex-col items-center"
-        initial="hidden"
-        animate="visible"
-        variants={containerVariants}
+        initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
       >
-        {/* Retro kitschy badge */}
-        <motion.div
-          variants={itemVariants}
-          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rose-100 border border-rose-200 text-rose-800 text-xs font-semibold tracking-widest uppercase shadow-sm mb-6"
-        >
-          <span>💌</span>
-          <span>{badgeText}</span>
-          <span>💌</span>
-        </motion.div>
-
-        {/* Couple Names */}
-        <motion.h1
-          variants={itemVariants}
-          className="text-4xl sm:text-6xl font-serif font-bold tracking-tight text-rose-950 mb-4"
-        >
-          {names}
-        </motion.h1>
-
-        {/* Date and Location Pills */}
-        <motion.div
-          variants={itemVariants}
-          className="my-3 flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-sm sm:text-base font-medium text-stone-700"
-        >
-          <span className="px-3.5 py-1.5 rounded-xl bg-white/80 border border-stone-200 shadow-xs">
-            📅 {dateText}
-          </span>
-          <span className="px-3.5 py-1.5 rounded-xl bg-white/80 border border-stone-200 shadow-xs">
-            📍 {locationText}
-          </span>
-        </motion.div>
-
-        {/* Subtitle / note */}
-        <motion.p
-          variants={itemVariants}
-          className="mt-4 text-stone-600 text-sm sm:text-base max-w-md mx-auto leading-relaxed"
-        >
-          {subheading}
-        </motion.p>
-
-        {/* Interactive kitsch heart button */}
-        <motion.div
-          variants={itemVariants}
-          className="mt-8"
-          whileHover={shouldReduceMotion ? {} : { scale: 1.05 }}
-          whileTap={shouldReduceMotion ? {} : { scale: 0.95 }}
-        >
-          <div className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-rose-600 text-white font-medium text-sm shadow-md hover:bg-rose-700 transition-colors cursor-pointer select-none">
-            <span>✨</span>
-            <span>Can&apos;t wait to celebrate!</span>
-            <span>✨</span>
-          </div>
-        </motion.div>
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-black tracking-wide text-[#b3392d] uppercase leading-tight">
+          {headline}
+        </h1>
       </motion.div>
+
+      {/* Reaching Hands Illustration */}
+      <motion.div
+        className="my-5"
+        initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.7, delay: 0.15 }}
+      >
+        <ReachingHandsIllustration />
+      </motion.div>
+
+      {/* Couple Names */}
+      <motion.div
+        initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.6, delay: 0.25 }}
+      >
+        <h2 className="text-2xl sm:text-3xl font-medium tracking-[0.25em] text-[#b3392d] uppercase">
+          {names}
+        </h2>
+        <p className="mt-2 text-sm sm:text-base font-medium tracking-wide text-[#b3392d]/90">
+          {dateText}
+        </p>
+      </motion.div>
+
+      {/* Open Invitation Pill Button */}
+      {buttonText && (
+        <motion.div
+          className="mt-6 mb-8"
+          initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.35 }}
+        >
+          <a
+            href={buttonLink}
+            onClick={handleScroll}
+            className="btn-wedding-pill cursor-pointer"
+          >
+            {buttonText}
+          </a>
+        </motion.div>
+      )}
+
+      {/* Welcome Invitation Blurb */}
+      {welcomeMessage && (
+        <motion.div
+          className="max-w-md mx-auto text-xs sm:text-sm leading-relaxed text-[#b3392d]/85 font-medium px-2"
+          initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.45 }}
+        >
+          <p>{welcomeMessage}</p>
+        </motion.div>
+      )}
+
+      {/* Cute Bride & Groom Doodle */}
+      <motion.div
+        className="mt-8 mb-2"
+        initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.6, delay: 0.55 }}
+      >
+        <CoupleDoodleIllustration />
+        <p className="mt-3 text-xs tracking-[0.25em] uppercase text-[#b3392d]/80 font-medium">
+          {names}
+        </p>
+      </motion.div>
+
+      {/* Ribbon Divider */}
+      {showDivider && (
+        <div className="pt-4">
+          <RibbonDivider />
+        </div>
+      )}
     </section>
   );
 };

@@ -2,35 +2,57 @@
 
 import React from "react";
 import { motion, useReducedMotion } from "framer-motion";
+import { WashiTape, CoupleDoodleIllustration } from "../decorations/Illustrations";
 
 export type FooterBlockProps = {
-  signOff: string;
-  signature: string;
-  domain: string;
+  message?: string;
+  signature?: string;
+  domain?: string;
 };
 
 export const FooterBlock: React.FC<FooterBlockProps> = ({
-  signOff = "Can't wait to see you on our big day!",
-  signature = "With love, Jules & Jon",
+  message = "We are grateful for the love and support of our family and friends. Your presence will make our day more special, and we look forward to celebrating with joy and creating unforgettable memories together.",
+  signature = "Jules & Jon",
   domain = "julesnjon.com",
 }) => {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <footer className="mt-auto py-12 px-4 text-center border-t border-stone-200/60 bg-white/40">
+    <footer className="mt-8 pt-8 pb-16 px-4 text-center max-w-xl mx-auto">
       <motion.div
-        className="max-w-md mx-auto flex flex-col items-center gap-2"
-        initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0 }}
-        whileInView={{ opacity: 1 }}
+        initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 15 }}
+        whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="flex flex-col items-center"
       >
-        <p className="text-sm font-medium text-stone-700">{signOff}</p>
-        <p className="text-lg font-serif italic font-bold text-rose-900">
-          {signature}
+        {/* Washi-taped photo card */}
+        <div className="relative bg-white/70 border border-[#b3392d]/25 p-5 pt-8 pb-4 rounded-sm shadow-2xs max-w-xs mx-auto mb-6">
+          {/* Centered Washi Tape strip */}
+          <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+            <WashiTape />
+          </div>
+
+          <div className="py-2">
+            <CoupleDoodleIllustration />
+          </div>
+        </div>
+
+        {/* Closing heartfelt text */}
+        <p className="max-w-md mx-auto text-xs sm:text-sm text-[#b3392d]/85 font-medium leading-relaxed mb-6 px-2">
+          {message}
         </p>
-        <span className="text-xs text-stone-500 font-mono tracking-wider mt-2">
-          {domain}
-        </span>
+
+        {/* Signature */}
+        <h4 className="text-xl sm:text-2xl font-serif font-bold tracking-[0.25em] text-[#b3392d] uppercase">
+          {signature}
+        </h4>
+
+        {domain && (
+          <span className="text-[11px] font-mono tracking-widest text-[#b3392d]/60 mt-3">
+            {domain}
+          </span>
+        )}
       </motion.div>
     </footer>
   );

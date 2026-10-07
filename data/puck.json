@@ -5,56 +5,122 @@
         "type": "HeroBlock",
         "props": {
           "id": "HeroBlock-1",
+          "headline": "WE'RE GETTING MARRIED!",
           "names": "Jules & Jon",
-          "badgeText": "SAVE THE DATE",
-          "dateText": "Saturday, October 10, 2026",
-          "locationText": "Melbourne, Australia",
-          "subheading": "We're getting married! Formal invitation to follow."
+          "dateText": "Saturday, September 18th 2027",
+          "buttonText": "Open Invitation",
+          "buttonLink": "#countdown",
+          "welcomeMessage": "No happiness is complete without the presence of our dearest ones. With great joy, we invite you to witness and celebrate our wedding day.",
+          "showDivider": true
         }
       },
       {
         "type": "CountdownBlock",
         "props": {
           "id": "CountdownBlock-1",
-          "title": "Counting down the days!",
-          "targetDate": "2026-10-10T15:00:00"
+          "title": "Counting Days",
+          "targetDate": "2027-09-18T15:00:00"
         }
       },
       {
-        "type": "StoryCardBlock",
+        "type": "SaveTheDateBlock",
         "props": {
-          "id": "StoryCardBlock-1",
-          "tag": "OUR STORY",
-          "emoji": "🥂",
-          "title": "How It All Began",
-          "body": "From late-night pasta dinners to long road trips, our favorite adventures have always been the ones spent together. We can't wait to begin our next chapter with our favorite people by our side.",
-          "accentColor": "butter"
+          "id": "SaveTheDateBlock-1",
+          "title": "Save The Date",
+          "monthYearText": "Saturday, September 2027",
+          "targetDay": 18,
+          "timeNote": "Time to be announced",
+          "showDivider": false
+        }
+      },
+      {
+        "type": "LocationBlock",
+        "props": {
+          "id": "LocationBlock-1",
+          "title": "Location",
+          "areaText": "The Rocks, Sydney",
+          "ceremonyVenue": "Ceremony · The Garrison Church",
+          "receptionVenue": "Reception · The Oriana",
+          "mapsUrl": "https://maps.google.com/?q=The+Rocks+Sydney",
+          "buttonText": "Google Maps",
+          "showDivider": true
+        }
+      },
+      {
+        "type": "TimelineBlock",
+        "props": {
+          "id": "TimelineBlock-1",
+          "title": "Wedding Timeline",
+          "subtitle": "Schedule & timings will be updated closer to our wedding day",
+          "showDivider": true
         }
       },
       {
         "type": "DetailsBlock",
         "props": {
           "id": "DetailsBlock-1",
-          "heading": "At A Glance",
-          "ceremonyTime": "3:30 PM",
-          "venueHint": "Yarra Valley, Victoria",
-          "attireHint": "Festive & Colorful Cocktail",
-          "note": "Travel, accommodation suggestions, and RSVP will be shared with the formal invitation."
+          "title": "Wedding Details",
+          "accommodationTitle": "Accommodation",
+          "accommodationText": "For your convenience, hotel suggestions and room blocks around The Rocks and Sydney CBD will be shared soon to help plan your stay.",
+          "transportationTitle": "Transportation",
+          "transportationText": "The Garrison Church and The Oriana are centrally located in The Rocks, Sydney. Circular Quay station (trains, ferries, and light rail) is within a brief walking distance.",
+          "showDivider": true
+        }
+      },
+      {
+        "type": "GiftBlock",
+        "props": {
+          "id": "GiftBlock-1",
+          "title": "Wedding Gift",
+          "message": "Your presence at our wedding is the greatest gift of all. If you would like to bless us further, a contribution to our wishing well would mean the world to us as we embark on this exciting chapter together.",
+          "buttonText": "Wishing Well",
+          "buttonLink": "#wishing-well",
+          "showDivider": true
+        }
+      },
+      {
+        "type": "AttireGuideBlock",
+        "props": {
+          "id": "AttireGuideBlock-1",
+          "title": "Attire Guide",
+          "attireType": "Black Tie",
+          "description": "We invite our guests to dress in formal black-tie attire—tuxedos or formal dark suits for gentlemen, and floor-length gowns or elegant formal dresses for ladies.",
+          "showDivider": true
+        }
+      },
+      {
+        "type": "StoryCardBlock",
+        "props": {
+          "id": "StoryCardBlock-1",
+          "title": "Love Story",
+          "tagline": "A glimpse into our journey together",
+          "showDivider": true
+        }
+      },
+      {
+        "type": "RsvpBlock",
+        "props": {
+          "id": "RsvpBlock-1",
+          "deadlineText": "Kindly RSVP by July 18th, 2027",
+          "buttonText": "RSVP",
+          "buttonLink": "mailto:rsvp@julesnjon.com?subject=Wedding%20RSVP",
+          "note": "to help us with final arrangements for our special day.",
+          "showDivider": false
         }
       },
       {
         "type": "FooterBlock",
         "props": {
           "id": "FooterBlock-1",
-          "signOff": "Can't wait to celebrate with you!",
-          "signature": "With love, Jules & Jon",
+          "message": "We are grateful for the love and support of our family and friends. Your presence will make our day more special, and we look forward to celebrating with joy and creating unforgettable memories together.",
+          "signature": "Jules & Jon",
           "domain": "julesnjon.com"
         }
       }
     ],
     "root": {
       "props": {
-        "title": "Jules & Jon | Save the Date"
+        "title": "Jules & Jon | Wedding Celebration"
       }
     }
   }
