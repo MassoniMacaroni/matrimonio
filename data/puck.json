@@ -1,0 +1,61 @@
+{
+  "/": {
+    "content": [
+      {
+        "type": "HeroBlock",
+        "props": {
+          "id": "HeroBlock-1",
+          "names": "Jules & Jon",
+          "badgeText": "SAVE THE DATE",
+          "dateText": "Saturday, October 10, 2026",
+          "locationText": "Melbourne, Australia",
+          "subheading": "We're getting married! Formal invitation to follow."
+        }
+      },
+      {
+        "type": "CountdownBlock",
+        "props": {
+          "id": "CountdownBlock-1",
+          "title": "Counting down the days!",
+          "targetDate": "2026-10-10T15:00:00"
+        }
+      },
+      {
+        "type": "StoryCardBlock",
+        "props": {
+          "id": "StoryCardBlock-1",
+          "tag": "OUR STORY",
+          "emoji": "🥂",
+          "title": "How It All Began",
+          "body": "From late-night pasta dinners to long road trips, our favorite adventures have always been the ones spent together. We can't wait to begin our next chapter with our favorite people by our side.",
+          "accentColor": "butter"
+        }
+      },
+      {
+        "type": "DetailsBlock",
+        "props": {
+          "id": "DetailsBlock-1",
+          "heading": "At A Glance",
+          "ceremonyTime": "3:30 PM",
+          "venueHint": "Yarra Valley, Victoria",
+          "attireHint": "Festive & Colorful Cocktail",
+          "note": "Travel, accommodation suggestions, and RSVP will be shared with the formal invitation."
+        }
+      },
+      {
+        "type": "FooterBlock",
+        "props": {
+          "id": "FooterBlock-1",
+          "signOff": "Can't wait to celebrate with you!",
+          "signature": "With love, Jules & Jon",
+          "domain": "julesnjon.com"
+        }
+      }
+    ],
+    "root": {
+      "props": {
+        "title": "Jules & Jon | Save the Date"
+      }
+    }
+  }
+}
