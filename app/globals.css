@@ -67,3 +67,13 @@ body {
 .btn-wedding-pill:active {
   transform: translateY(0);
 }
+
+/* Allow absolute border & corner decorations to position relative to the container instead of Puck's 0-height item wrapper */
+[data-puck-component]:has([data-placement-border]),
+[data-puck-component]:has(> [data-placement-border]),
+div:has(> [data-placement-border]),
+[class*="_DropZone-item"]:has([data-placement-border]) {
+  position: static !important;
+}
+
+

@@ -1,4 +1,20 @@
 import type { Config } from "@puckeditor/core";
+
+// Atomic Building Blocks
+import { ContainerBlock, ContainerBlockProps } from "./components/atomic/ContainerBlock";
+import { FlexRowBlock, FlexRowBlockProps } from "./components/atomic/FlexRowBlock";
+import { BorderFrameBlock, BorderFrameBlockProps } from "./components/atomic/BorderFrameBlock";
+import { AnimatedImageBlock, AnimatedImageBlockProps } from "./components/atomic/AnimatedImageBlock";
+import { HeadingBlock, HeadingBlockProps } from "./components/atomic/HeadingBlock";
+import { TextBlock, TextBlockProps } from "./components/atomic/TextBlock";
+import { IllustrationBlock, IllustrationBlockProps } from "./components/atomic/IllustrationBlock";
+import { ButtonBlock, ButtonBlockProps } from "./components/atomic/ButtonBlock";
+import { DividerBlock, DividerBlockProps } from "./components/atomic/DividerBlock";
+import { CalendarHeartBlock, CalendarHeartBlockProps } from "./components/atomic/CalendarHeartBlock";
+import { AddToCalendarBlock, AddToCalendarBlockProps } from "./components/atomic/AddToCalendarBlock";
+import { CountdownTimerBlock, CountdownTimerBlockProps } from "./components/atomic/CountdownTimerBlock";
+
+// Classic Composite Blocks
 import { HeroBlock, HeroBlockProps } from "./components/blocks/HeroBlock";
 import { CountdownBlock, CountdownBlockProps } from "./components/blocks/CountdownBlock";
 import { SaveTheDateBlock, SaveTheDateBlockProps } from "./components/blocks/SaveTheDateBlock";
@@ -13,8 +29,39 @@ import { GiftBlock, GiftBlockProps } from "./components/blocks/GiftBlock";
 import { StoryCardBlock, StoryCardBlockProps } from "./components/blocks/StoryCardBlock";
 import { RsvpBlock, RsvpBlockProps } from "./components/blocks/RsvpBlock";
 import { FooterBlock, FooterBlockProps } from "./components/blocks/FooterBlock";
+import {
+  ImageCarouselBlock,
+  ImageCarouselBlockProps,
+  defaultCarouselImages,
+} from "./components/blocks/ImageCarouselBlock";
+import {
+  StickerRibbonBlock,
+  StickerRibbonBlockProps,
+  defaultStickers,
+} from "./components/blocks/StickerRibbonBlock";
 
 export type Props = {
+  // Atomic Layout & Containers
+  ContainerBlock: ContainerBlockProps;
+  FlexRowBlock: FlexRowBlockProps;
+  BorderFrameBlock: BorderFrameBlockProps;
+
+  // Atomic Media & Animated Elements
+  AnimatedImageBlock: AnimatedImageBlockProps;
+
+  // Atomic Typography & Visuals
+  HeadingBlock: HeadingBlockProps;
+  TextBlock: TextBlockProps;
+  IllustrationBlock: IllustrationBlockProps;
+  ButtonBlock: ButtonBlockProps;
+  DividerBlock: DividerBlockProps;
+
+  // Atomic Widgets
+  CalendarHeartBlock: CalendarHeartBlockProps;
+  AddToCalendarBlock: AddToCalendarBlockProps;
+  CountdownTimerBlock: CountdownTimerBlockProps;
+
+  // Pre-assembled Composite Blocks
   HeroBlock: HeroBlockProps;
   CountdownBlock: CountdownBlockProps;
   SaveTheDateBlock: SaveTheDateBlockProps;
@@ -29,24 +76,52 @@ export type Props = {
   StoryCardBlock: StoryCardBlockProps;
   RsvpBlock: RsvpBlockProps;
   FooterBlock: FooterBlockProps;
+  ImageCarouselBlock: ImageCarouselBlockProps;
+  StickerRibbonBlock: StickerRibbonBlockProps;
 };
 
 export const config: Config<Props> = {
   categories: {
-    saveTheDate: {
-      title: "Save The Date Blocks",
+    layout: {
+      title: "Atomic Layout & Containers",
+      components: ["ContainerBlock", "FlexRowBlock", "BorderFrameBlock"],
+    },
+    media: {
+      title: "Atomic Animated Media & Images",
+      components: [
+        "AnimatedImageBlock",
+        "IllustrationBlock",
+        "ImageCarouselBlock",
+        "StickerRibbonBlock",
+      ],
+    },
+    typography: {
+      title: "Atomic Content & Typography",
+      components: [
+        "HeadingBlock",
+        "TextBlock",
+        "ButtonBlock",
+        "DividerBlock",
+      ],
+    },
+    widgets: {
+      title: "Atomic Wedding Widgets",
+      components: [
+        "CalendarHeartBlock",
+        "AddToCalendarBlock",
+        "CountdownTimerBlock",
+      ],
+    },
+    composite: {
+      title: "Pre-assembled Templates (Classic)",
       components: [
         "HeroBlock",
         "SaveTheDateBlock",
+        "CalendarReminderBlock",
         "CountdownBlock",
         "WineStreamDetailsBlock",
         "CelebrationPopperBlock",
-        "CalendarReminderBlock",
-      ],
-    },
-    invitation: {
-      title: "Full Wedding Invite Blocks",
-      components: [
+        "FooterBlock",
         "LocationBlock",
         "TimelineBlock",
         "DetailsBlock",
@@ -54,14 +129,821 @@ export const config: Config<Props> = {
         "GiftBlock",
         "StoryCardBlock",
         "RsvpBlock",
+        "ImageCarouselBlock",
+        "StickerRibbonBlock",
       ],
-    },
-    shared: {
-      title: "Footer & Shared Blocks",
-      components: ["FooterBlock"],
     },
   },
   components: {
+    // ----------------------------------------------------
+    // ATOMIC LAYOUT & CONTAINERS
+    // ----------------------------------------------------
+    ContainerBlock: {
+      fields: {
+        content: { type: "slot" },
+        variant: {
+          type: "select",
+          label: "Card / Background Variant",
+          options: [
+            { label: "Standard (Transparent)", value: "standard" },
+            { label: "White Card with Border", value: "card" },
+            { label: "Washi Taped Card", value: "washi-card" },
+          ],
+        },
+        maxWidth: {
+          type: "select",
+          label: "Max Width",
+          options: [
+            { label: "Extra Small (xs - 320px)", value: "xs" },
+            { label: "Small (sm - 384px)", value: "sm" },
+            { label: "Medium (md - 448px)", value: "md" },
+            { label: "Large (lg - 512px)", value: "lg" },
+            { label: "Extra Large (xl - 576px)", value: "xl" },
+            { label: "Full Width", value: "full" },
+          ],
+        },
+        paddingY: {
+          type: "select",
+          label: "Vertical Padding",
+          options: [
+            { label: "None", value: "none" },
+            { label: "Small", value: "sm" },
+            { label: "Medium", value: "md" },
+            { label: "Large", value: "lg" },
+            { label: "Extra Large", value: "xl" },
+          ],
+        },
+        align: {
+          type: "select",
+          label: "Content Alignment",
+          options: [
+            { label: "Center", value: "center" },
+            { label: "Left", value: "left" },
+            { label: "Right", value: "right" },
+          ],
+        },
+        showDivider: {
+          type: "radio",
+          label: "Bottom Ribbon Divider",
+          options: [
+            { label: "Yes", value: true },
+            { label: "No", value: false },
+          ],
+        },
+        animate: {
+          type: "radio",
+          label: "Scroll Entrance Animation",
+          options: [
+            { label: "Yes", value: true },
+            { label: "No", value: false },
+          ],
+        },
+      },
+      defaultProps: {
+        content: [],
+        variant: "standard",
+        maxWidth: "xl",
+        paddingY: "md",
+        align: "center",
+        showDivider: false,
+        animate: true,
+      },
+      render: (props) => <ContainerBlock {...props} />,
+    },
+
+    FlexRowBlock: {
+      fields: {
+        items: { type: "slot" },
+        justify: {
+          type: "select",
+          label: "Justify",
+          options: [
+            { label: "Center", value: "center" },
+            { label: "Start / Left", value: "start" },
+            { label: "End / Right", value: "end" },
+            { label: "Space Between", value: "between" },
+          ],
+        },
+        gap: {
+          type: "select",
+          label: "Item Spacing",
+          options: [
+            { label: "Small", value: "sm" },
+            { label: "Medium", value: "md" },
+            { label: "Large", value: "lg" },
+          ],
+        },
+        wrap: {
+          type: "radio",
+          label: "Wrap onto New Lines",
+          options: [
+            { label: "Yes", value: true },
+            { label: "No", value: false },
+          ],
+        },
+      },
+      defaultProps: {
+        items: [],
+        justify: "center",
+        gap: "md",
+        wrap: true,
+      },
+      render: (props) => <FlexRowBlock {...props} />,
+    },
+
+    BorderFrameBlock: {
+      fields: {
+        content: { type: "slot" },
+        topLeft: { type: "slot" },
+        topRight: { type: "slot" },
+        bottomLeft: { type: "slot" },
+        bottomRight: { type: "slot" },
+        borderStyle: {
+          type: "select",
+          label: "Frame Border Style",
+          options: [
+            { label: "Retro Double Line Border", value: "retro-double" },
+            { label: "Dashed Perforated Border", value: "dashed" },
+            { label: "Warm Wedding Card", value: "card" },
+            { label: "Delicate Single Line", value: "delicate-line" },
+            { label: "None (Slot Corner Layout Only)", value: "none" },
+          ],
+        },
+        maxWidth: {
+          type: "select",
+          label: "Max Width",
+          options: [
+            { label: "Extra Small (xs - 320px)", value: "xs" },
+            { label: "Small (sm - 384px)", value: "sm" },
+            { label: "Medium (md - 448px)", value: "md" },
+            { label: "Large (lg - 512px)", value: "lg" },
+            { label: "Extra Large (xl - 576px)", value: "xl" },
+            { label: "Full Width", value: "full" },
+          ],
+        },
+        paddingY: {
+          type: "select",
+          label: "Vertical Padding",
+          options: [
+            { label: "None", value: "none" },
+            { label: "Small", value: "sm" },
+            { label: "Medium", value: "md" },
+            { label: "Large", value: "lg" },
+            { label: "Extra Large", value: "xl" },
+          ],
+        },
+        align: {
+          type: "select",
+          label: "Content Alignment",
+          options: [
+            { label: "Center", value: "center" },
+            { label: "Left", value: "left" },
+            { label: "Right", value: "right" },
+          ],
+        },
+        showDivider: {
+          type: "radio",
+          label: "Bottom Ribbon Divider",
+          options: [
+            { label: "Yes", value: true },
+            { label: "No", value: false },
+          ],
+        },
+        animate: {
+          type: "radio",
+          label: "Scroll Entrance Animation",
+          options: [
+            { label: "Yes", value: true },
+            { label: "No", value: false },
+          ],
+        },
+      },
+      defaultProps: {
+        content: [],
+        topLeft: [],
+        topRight: [],
+        bottomLeft: [],
+        bottomRight: [],
+        borderStyle: "retro-double",
+        maxWidth: "xl",
+        paddingY: "md",
+        align: "center",
+        showDivider: false,
+        animate: true,
+      },
+      render: (props) => <BorderFrameBlock {...props} />,
+    },
+
+    // ----------------------------------------------------
+    // ATOMIC CONTENT & TYPOGRAPHY
+    // ----------------------------------------------------
+    HeadingBlock: {
+      fields: {
+        text: { type: "text", label: "Heading Text" },
+        as: {
+          type: "select",
+          label: "HTML Tag",
+          options: [
+            { label: "H1", value: "h1" },
+            { label: "H2", value: "h2" },
+            { label: "H3", value: "h3" },
+            { label: "H4", value: "h4" },
+            { label: "Paragraph (p)", value: "p" },
+          ],
+        },
+        fontStyle: {
+          type: "select",
+          label: "Font Style",
+          options: [
+            { label: "Retro Chunky Serif (Fraunces)", value: "retro" },
+            { label: "Calligraphy Script (Alex Brush)", value: "script" },
+            { label: "Classic Serif (Playfair)", value: "serif" },
+            { label: "Clean Sans-Serif", value: "sans" },
+            { label: "Monospace", value: "mono" },
+          ],
+        },
+        size: {
+          type: "select",
+          label: "Font Size",
+          options: [
+            { label: "Small", value: "sm" },
+            { label: "Base", value: "base" },
+            { label: "Large", value: "lg" },
+            { label: "XL", value: "xl" },
+            { label: "2XL", value: "2xl" },
+            { label: "3XL", value: "3xl" },
+            { label: "4XL (Display)", value: "4xl" },
+            { label: "5XL (Huge)", value: "5xl" },
+          ],
+        },
+        color: {
+          type: "select",
+          label: "Color",
+          options: [
+            { label: "Terracotta Red (#b3392d)", value: "primary" },
+            { label: "Dark Chocolate (#4a2824)", value: "body" },
+            { label: "Muted Terracotta", value: "muted" },
+          ],
+        },
+        align: {
+          type: "select",
+          label: "Alignment",
+          options: [
+            { label: "Center", value: "center" },
+            { label: "Left", value: "left" },
+            { label: "Right", value: "right" },
+          ],
+        },
+        uppercase: {
+          type: "radio",
+          label: "Uppercase",
+          options: [
+            { label: "Yes", value: true },
+            { label: "No", value: false },
+          ],
+        },
+        tracking: {
+          type: "select",
+          label: "Letter Spacing",
+          options: [
+            { label: "Tight", value: "tight" },
+            { label: "Normal", value: "normal" },
+            { label: "Wide", value: "wide" },
+            { label: "Widest (Spaced)", value: "widest" },
+          ],
+        },
+        withSparkles: {
+          type: "radio",
+          label: "Flank with Sparkle Stars",
+          options: [
+            { label: "Yes", value: true },
+            { label: "No", value: false },
+          ],
+        },
+        marginBottom: {
+          type: "select",
+          label: "Bottom Margin",
+          options: [
+            { label: "None", value: "none" },
+            { label: "Small", value: "sm" },
+            { label: "Medium", value: "md" },
+            { label: "Large", value: "lg" },
+          ],
+        },
+      },
+      defaultProps: {
+        text: "SAVE THE DATE",
+        as: "h2",
+        fontStyle: "retro",
+        size: "3xl",
+        color: "primary",
+        align: "center",
+        uppercase: false,
+        tracking: "normal",
+        withSparkles: false,
+        marginBottom: "sm",
+      },
+      render: (props) => <HeadingBlock {...props} />,
+    },
+
+    TextBlock: {
+      fields: {
+        content: { type: "textarea", label: "Text Content" },
+        fontStyle: {
+          type: "select",
+          label: "Font Style",
+          options: [
+            { label: "Classic Serif", value: "serif" },
+            { label: "Clean Sans", value: "sans" },
+            { label: "Monospace", value: "mono" },
+            { label: "Calligraphy Script", value: "script" },
+          ],
+        },
+        size: {
+          type: "select",
+          label: "Font Size",
+          options: [
+            { label: "Extra Small (12-14px)", value: "xs" },
+            { label: "Small (14-16px)", value: "sm" },
+            { label: "Base (16-18px)", value: "base" },
+            { label: "Large (18-20px)", value: "lg" },
+          ],
+        },
+        color: {
+          type: "select",
+          label: "Color",
+          options: [
+            { label: "Dark Chocolate (#4a2824)", value: "body" },
+            { label: "Terracotta Red (#b3392d)", value: "primary" },
+            { label: "Muted Terracotta", value: "muted" },
+          ],
+        },
+        align: {
+          type: "select",
+          label: "Alignment",
+          options: [
+            { label: "Center", value: "center" },
+            { label: "Left", value: "left" },
+            { label: "Right", value: "right" },
+          ],
+        },
+        uppercase: {
+          type: "radio",
+          label: "Uppercase",
+          options: [
+            { label: "Yes", value: true },
+            { label: "No", value: false },
+          ],
+        },
+        tracking: {
+          type: "select",
+          label: "Letter Spacing",
+          options: [
+            { label: "Normal", value: "normal" },
+            { label: "Wide", value: "wide" },
+            { label: "Widest (Tracking)", value: "widest" },
+          ],
+        },
+        maxWidth: {
+          type: "select",
+          label: "Max Width Container",
+          options: [
+            { label: "None", value: "none" },
+            { label: "Extra Small", value: "xs" },
+            { label: "Small", value: "sm" },
+            { label: "Medium", value: "md" },
+          ],
+        },
+        marginBottom: {
+          type: "select",
+          label: "Bottom Margin",
+          options: [
+            { label: "None", value: "none" },
+            { label: "Small", value: "sm" },
+            { label: "Medium", value: "md" },
+            { label: "Large", value: "lg" },
+          ],
+        },
+      },
+      defaultProps: {
+        content: "Save our date on your calendar. Formal invitations & RSVP to follow.",
+        fontStyle: "serif",
+        size: "sm",
+        color: "body",
+        align: "center",
+        uppercase: false,
+        tracking: "normal",
+        maxWidth: "sm",
+        marginBottom: "sm",
+      },
+      render: (props) => <TextBlock {...props} />,
+    },
+
+    IllustrationBlock: {
+      fields: {
+        illustration: {
+          type: "select",
+          label: "Illustration",
+          options: [
+            { label: "Reaching Hands", value: "hands" },
+            { label: "Bride & Groom Doodle", value: "couple" },
+            { label: "Toasting Champagne Glasses", value: "champagne" },
+            { label: "Cheeky Twin Cherries", value: "cherries" },
+            { label: "Vintage Save The Date Stamp", value: "stamp" },
+            { label: "Botanical Leaf (Left)", value: "leaf-left" },
+            { label: "Botanical Leaf (Right)", value: "leaf-right" },
+            { label: "Sparkle Stars Cluster", value: "sparkles" },
+            { label: "Washi Tape Strip", value: "washi" },
+          ],
+        },
+        align: {
+          type: "select",
+          label: "Alignment",
+          options: [
+            { label: "Center", value: "center" },
+            { label: "Left", value: "left" },
+            { label: "Right", value: "right" },
+          ],
+        },
+        marginY: {
+          type: "select",
+          label: "Vertical Margin",
+          options: [
+            { label: "None", value: "none" },
+            { label: "Small", value: "sm" },
+            { label: "Medium", value: "md" },
+            { label: "Large", value: "lg" },
+          ],
+        },
+      },
+      defaultProps: {
+        illustration: "hands",
+        align: "center",
+        marginY: "md",
+      },
+      render: (props) => <IllustrationBlock {...props} />,
+    },
+
+    AnimatedImageBlock: {
+      fields: {
+        imageType: {
+          type: "select",
+          label: "Source Type",
+          options: [
+            { label: "Illustration / Doodle Preset", value: "illustration" },
+            { label: "Custom Image URL", value: "url" },
+          ],
+        },
+        illustration: {
+          type: "select",
+          label: "Illustration Preset",
+          options: [
+            { label: "Cheeky Twin Cherries", value: "cherries" },
+            { label: "Vintage Save The Date Stamp", value: "stamp" },
+            { label: "Botanical Olive Leaf (Left)", value: "leaf-left" },
+            { label: "Botanical Olive Leaf (Right)", value: "leaf-right" },
+            { label: "Hand-Drawn Heart", value: "heart" },
+            { label: "Entwined Wedding Rings", value: "rings" },
+            { label: "Toasting Champagne Glasses", value: "champagne" },
+            { label: "Bride & Groom Doodle", value: "couple" },
+            { label: "Reaching Hands", value: "hands" },
+            { label: "Sparkle Stars Cluster", value: "sparkles" },
+            { label: "Washi Tape Strip", value: "washi" },
+            { label: "Wine Bottle Pouring", value: "wine-bottle" },
+            { label: "Party Poppers Blast", value: "poppers" },
+            { label: "Banquet Feast Table", value: "banquet" },
+            { label: "Cocktail Attire", value: "attire" },
+          ],
+        },
+        src: { type: "text", label: "Custom Image URL (if Source Type = URL)" },
+        alt: { type: "text", label: "Image Alt Text" },
+
+        frameStyle: {
+          type: "select",
+          label: "Frame / Presentation Style",
+          options: [
+            { label: "None (Clean Transparent)", value: "none" },
+            { label: "Vintage Polaroid Photo", value: "polaroid" },
+            { label: "Postage Stamp Perforated Frame", value: "stamp" },
+            { label: "Warm Wedding Card", value: "card" },
+            { label: "Circular Badge Cameo", value: "circle" },
+            { label: "Washi Taped Top", value: "washi" },
+          ],
+        },
+        size: {
+          type: "select",
+          label: "Size",
+          options: [
+            { label: "Extra Small (44px)", value: "xs" },
+            { label: "Small (72px)", value: "sm" },
+            { label: "Medium (112px)", value: "md" },
+            { label: "Large (160px)", value: "lg" },
+            { label: "Extra Large (224px)", value: "xl" },
+            { label: "2X Large (288px)", value: "2xl" },
+            { label: "Auto / Natural", value: "auto" },
+          ],
+        },
+        aspectRatio: {
+          type: "select",
+          label: "Aspect Ratio",
+          options: [
+            { label: "Auto / Natural", value: "auto" },
+            { label: "Square (1:1)", value: "square" },
+            { label: "Portrait (3:4)", value: "portrait" },
+            { label: "Landscape (4:3)", value: "landscape" },
+          ],
+        },
+        caption: { type: "text", label: "Caption Text (Optional)" },
+        rotation: {
+          type: "select",
+          label: "Base Tilt Angle",
+          options: [
+            { label: "-12° Tilt", value: "-12" },
+            { label: "-8° Tilt", value: "-8" },
+            { label: "-4° Tilt", value: "-4" },
+            { label: "-2° Tilt", value: "-2" },
+            { label: "0° (Straight)", value: "0" },
+            { label: "+2° Tilt", value: "2" },
+            { label: "+4° Tilt", value: "4" },
+            { label: "+8° Tilt", value: "8" },
+            { label: "+12° Tilt", value: "12" },
+          ],
+        },
+
+        animation: {
+          type: "select",
+          label: "Animation Effect",
+          options: [
+            { label: "Gentle Floating & Swaying (Combined)", value: "float-sway" },
+            { label: "Gentle Vertical Float (Bobbing)", value: "float" },
+            { label: "Pendulum Sway (Tilting)", value: "sway" },
+            { label: "Breathing Heartbeat Pulse", value: "pulse" },
+            { label: "Slow Continuous Spin", value: "spin-slow" },
+            { label: "Soft Rhythmic Bounce", value: "bounce" },
+            { label: "Playful Wiggle / Shake", value: "wiggle" },
+            { label: "Scroll Reveal (Fade & Rise)", value: "scroll-reveal" },
+            { label: "None (Static)", value: "none" },
+          ],
+        },
+        speed: {
+          type: "select",
+          label: "Animation Speed",
+          options: [
+            { label: "Slow (Gentle & Lingering)", value: "slow" },
+            { label: "Normal (Balanced)", value: "normal" },
+            { label: "Fast (Lively)", value: "fast" },
+          ],
+        },
+        delay: {
+          type: "select",
+          label: "Animation Delay (Desync)",
+          options: [
+            { label: "0s (Immediate)", value: "0" },
+            { label: "0.5s Delay", value: "0.5" },
+            { label: "1.0s Delay", value: "1" },
+            { label: "1.5s Delay", value: "1.5" },
+            { label: "2.0s Delay", value: "2" },
+            { label: "2.5s Delay", value: "2.5" },
+            { label: "3.0s Delay", value: "3" },
+          ],
+        },
+        hoverEffect: {
+          type: "select",
+          label: "Hover Reaction",
+          options: [
+            { label: "Float Up (Lift)", value: "lift" },
+            { label: "Tilt", value: "tilt" },
+            { label: "Scale Up", value: "scale" },
+            { label: "Playful Wiggle", value: "wiggle" },
+            { label: "None", value: "none" },
+          ],
+        },
+
+        placement: {
+          type: "select",
+          label: "Placement / Border Position",
+          options: [
+            { label: "Inline (Standard Content Flow)", value: "inline" },
+            { label: "Container Top-Left Corner", value: "corner-top-left" },
+            { label: "Container Top-Right Corner", value: "corner-top-right" },
+            {
+              label: "Container Center-Left (Middle Edge)",
+              value: "container-center-left",
+            },
+            {
+              label: "Container Center-Right (Middle Edge)",
+              value: "container-center-right",
+            },
+            { label: "Container Bottom-Left Corner", value: "corner-bottom-left" },
+            { label: "Container Bottom-Right Corner", value: "corner-bottom-right" },
+            { label: "Outside Left Border (Wide Gutter)", value: "border-left" },
+            { label: "Outside Right Border (Wide Gutter)", value: "border-right" },
+            { label: "Viewport Fixed Top-Left", value: "fixed-top-left" },
+            { label: "Viewport Fixed Top-Right", value: "fixed-top-right" },
+            { label: "Viewport Fixed Bottom-Left", value: "fixed-bottom-left" },
+            { label: "Viewport Fixed Bottom-Right", value: "fixed-bottom-right" },
+            { label: "Viewport Fixed Center-Left", value: "fixed-left" },
+            { label: "Viewport Fixed Center-Right", value: "fixed-right" },
+          ],
+        },
+        align: {
+          type: "select",
+          label: "Inline Alignment",
+          options: [
+            { label: "Center", value: "center" },
+            { label: "Left", value: "left" },
+            { label: "Right", value: "right" },
+          ],
+        },
+        hideOnMobile: {
+          type: "radio",
+          label: "Hide on Narrow Mobile (<640px)",
+          options: [
+            { label: "Yes", value: true },
+            { label: "No", value: false },
+          ],
+        },
+        zIndex: {
+          type: "select",
+          label: "Layer Stacking (Z-Index)",
+          options: [
+            { label: "Standard (z-10)", value: "normal" },
+            { label: "Behind Content (z-0)", value: "behind" },
+            { label: "In Front / Floating (z-30)", value: "above" },
+          ],
+        },
+        linkUrl: { type: "text", label: "Link URL (Optional)" },
+        newTab: {
+          type: "radio",
+          label: "Open Link in New Tab",
+          options: [
+            { label: "Yes", value: true },
+            { label: "No", value: false },
+          ],
+        },
+      },
+      defaultProps: {
+        imageType: "illustration",
+        illustration: "cherries",
+        src: "",
+        alt: "Wedding decoration",
+        frameStyle: "none",
+        size: "md",
+        aspectRatio: "auto",
+        caption: "",
+        rotation: "0",
+        animation: "float-sway",
+        speed: "normal",
+        delay: "0",
+        hoverEffect: "lift",
+        placement: "inline",
+        align: "center",
+        hideOnMobile: false,
+        zIndex: "normal",
+        linkUrl: "",
+        newTab: false,
+      },
+      render: (props) => <AnimatedImageBlock {...props} />,
+    },
+
+    ButtonBlock: {
+      fields: {
+        label: { type: "text", label: "Button Label" },
+        url: { type: "text", label: "Button Link / URL" },
+        variant: {
+          type: "select",
+          label: "Style Variant",
+          options: [
+            { label: "Filled Red Pill", value: "pill-filled" },
+            { label: "Outline Red Pill", value: "pill-outline" },
+            { label: "Text Link", value: "link" },
+          ],
+        },
+        icon: {
+          type: "select",
+          label: "Icon",
+          options: [
+            { label: "None", value: "none" },
+            { label: "Calendar", value: "calendar" },
+            { label: "Apple / iCal", value: "ical" },
+            { label: "Heart", value: "heart" },
+            { label: "External Link", value: "external" },
+          ],
+        },
+        download: { type: "text", label: "Download Filename (Optional)" },
+        align: {
+          type: "select",
+          label: "Alignment",
+          options: [
+            { label: "Center", value: "center" },
+            { label: "Left", value: "left" },
+            { label: "Right", value: "right" },
+          ],
+        },
+        newTab: {
+          type: "radio",
+          label: "Open in New Tab",
+          options: [
+            { label: "Yes", value: true },
+            { label: "No", value: false },
+          ],
+        },
+      },
+      defaultProps: {
+        label: "Click Here",
+        url: "#",
+        variant: "pill-filled",
+        icon: "none",
+        download: "",
+        align: "center",
+        newTab: false,
+      },
+      render: (props) => <ButtonBlock {...props} />,
+    },
+
+    DividerBlock: {
+      fields: {
+        variant: {
+          type: "select",
+          label: "Divider Style",
+          options: [
+            { label: "Ribbon Wave Loop", value: "ribbon" },
+            { label: "Botanical Olive Leaves", value: "leaves" },
+            { label: "Subtle Line", value: "line" },
+            { label: "Small Spacer (16px)", value: "spacer-sm" },
+            { label: "Medium Spacer (32px)", value: "spacer-md" },
+            { label: "Large Spacer (56px)", value: "spacer-lg" },
+          ],
+        },
+      },
+      defaultProps: {
+        variant: "ribbon",
+      },
+      render: (props) => <DividerBlock {...props} />,
+    },
+
+    // ----------------------------------------------------
+    // ATOMIC WEDDING WIDGETS
+    // ----------------------------------------------------
+    CalendarHeartBlock: {
+      fields: {
+        targetDay: { type: "number", label: "Target Day (Day of Month)" },
+        monthYearText: { type: "text", label: "Month & Year Text" },
+        showFlourish: {
+          type: "radio",
+          label: "Show Flanking Olive Leaves",
+          options: [
+            { label: "Yes", value: true },
+            { label: "No", value: false },
+          ],
+        },
+      },
+      defaultProps: {
+        targetDay: 18,
+        monthYearText: "Saturday, September 2027",
+        showFlourish: true,
+      },
+      render: (props) => <CalendarHeartBlock {...props} />,
+    },
+
+    AddToCalendarBlock: {
+      fields: {
+        eventName: { type: "text", label: "Event Name" },
+        eventDate: { type: "text", label: "Event Date (YYYYMMDD)" },
+        eventLocation: { type: "text", label: "Event Location" },
+        eventDetails: { type: "textarea", label: "Event Details / Description" },
+      },
+      defaultProps: {
+        eventName: "Jules & Jon Wedding",
+        eventDate: "20270918",
+        eventLocation: "The Rocks, Sydney NSW, Australia",
+        eventDetails: "Save the date for the wedding celebration of Jules & Jon! Formal invitation to follow.",
+      },
+      render: (props) => <AddToCalendarBlock {...props} />,
+    },
+
+    CountdownTimerBlock: {
+      fields: {
+        targetDate: { type: "text", label: "Target ISO Date" },
+        showFlourish: {
+          type: "radio",
+          label: "Show Flanking Olive Leaves",
+          options: [
+            { label: "Yes", value: true },
+            { label: "No", value: false },
+          ],
+        },
+      },
+      defaultProps: {
+        targetDate: "2027-09-18T15:00:00",
+        showFlourish: true,
+      },
+      render: (props) => <CountdownTimerBlock {...props} />,
+    },
+
+    // ----------------------------------------------------
+    // PRE-ASSEMBLED COMPOSITE BLOCKS (CLASSIC)
+    // ----------------------------------------------------
     HeroBlock: {
       fields: {
         headline: { type: "text", label: "Headline" },
@@ -446,6 +1328,356 @@ export const config: Config<Props> = {
         domain: "julesnjon.com",
       },
       render: (props) => <FooterBlock {...props} />,
+    },
+
+    ImageCarouselBlock: {
+      fields: {
+        title: { type: "text", label: "Section Title" },
+        subtitle: { type: "text", label: "Subtitle / Tagline" },
+        showTitle: {
+          type: "radio",
+          label: "Show Title",
+          options: [
+            { label: "Yes", value: true },
+            { label: "No", value: false },
+          ],
+        },
+        fullBleed: {
+          type: "radio",
+          label: "Layout Width",
+          options: [
+            { label: "Full Page Edge-to-Edge", value: true },
+            { label: "Contained", value: false },
+          ],
+        },
+        speed: {
+          type: "select",
+          label: "Auto-Slide Speed",
+          options: [
+            { label: "Slow Drift (Relaxed)", value: "slow" },
+            { label: "Medium", value: "medium" },
+            { label: "Fast", value: "fast" },
+            { label: "Paused (Manual Only)", value: "paused" },
+          ],
+        },
+        direction: {
+          type: "select",
+          label: "Slide Direction",
+          options: [
+            { label: "Leftward (Right to Left)", value: "left" },
+            { label: "Rightward (Left to Right)", value: "right" },
+          ],
+        },
+        cardStyle: {
+          type: "select",
+          label: "Card Frame Style",
+          options: [
+            { label: "Polaroid Photo Frame", value: "polaroid" },
+            { label: "Vintage Card Frame", value: "vintage-card" },
+            { label: "Modern Overlay Frame", value: "modern" },
+            { label: "Minimalist Borderless", value: "minimal" },
+            { label: "Seamless Flush (No Border/Radius)", value: "flush" },
+          ],
+        },
+        cardHeight: {
+          type: "select",
+          label: "Image Height",
+          options: [
+            { label: "Extra Small (160px)", value: "xs" },
+            { label: "Small (240px)", value: "sm" },
+            { label: "Medium (320px)", value: "md" },
+            { label: "Large (380px)", value: "lg" },
+            { label: "Extra Large (480px)", value: "xl" },
+          ],
+        },
+        aspectRatio: {
+          type: "select",
+          label: "Image Aspect Ratio",
+          options: [
+            { label: "Portrait (3:4)", value: "portrait" },
+            { label: "Square (1:1)", value: "square" },
+            { label: "Landscape (4:3)", value: "landscape" },
+            { label: "Auto / Natural", value: "auto" },
+          ],
+        },
+        gap: {
+          type: "select",
+          label: "Spacing Between Photos",
+          options: [
+            { label: "None (No Space)", value: "none" },
+            { label: "Compact", value: "sm" },
+            { label: "Comfortable", value: "md" },
+            { label: "Spacious", value: "lg" },
+          ],
+        },
+        subtleTilt: {
+          type: "radio",
+          label: "Subtle Photo Tilt (Polaroids)",
+          options: [
+            { label: "Yes", value: true },
+            { label: "No", value: false },
+          ],
+        },
+        pauseOnHover: {
+          type: "radio",
+          label: "Pause Auto-Slide on Hover",
+          options: [
+            { label: "Yes", value: true },
+            { label: "No", value: false },
+          ],
+        },
+        showControls: {
+          type: "radio",
+          label: "Show Navigation Arrows",
+          options: [
+            { label: "Yes", value: true },
+            { label: "No", value: false },
+          ],
+        },
+        showPauseButton: {
+          type: "radio",
+          label: "Show Pause / Play Button",
+          options: [
+            { label: "Yes", value: true },
+            { label: "No", value: false },
+          ],
+        },
+        showScrollHint: {
+          type: "radio",
+          label: 'Show "Scroll or drag horizontally" Hint',
+          options: [
+            { label: "Yes", value: true },
+            { label: "No", value: false },
+          ],
+        },
+        showEdgeFades: {
+          type: "radio",
+          label: "Edge Fade / Vignette",
+          options: [
+            { label: "No (Clean Edges)", value: false },
+            { label: "Yes (Subtle Fade)", value: true },
+          ],
+        },
+        showDivider: {
+          type: "radio",
+          label: "Show Bottom Ribbon Divider",
+          options: [
+            { label: "Yes", value: true },
+            { label: "No", value: false },
+          ],
+        },
+        images: {
+          type: "array",
+          label: "Carousel Images",
+          arrayFields: {
+            url: { type: "text", label: "Image URL or Path" },
+            alt: { type: "text", label: "Alt Text" },
+            caption: { type: "text", label: "Caption" },
+            subcaption: { type: "text", label: "Subcaption / Date" },
+            rotation: {
+              type: "select",
+              label: "Rotation Angle",
+              options: [
+                { label: "Default Alternating", value: "0" },
+                { label: "Tilt Left (-2°)", value: "-2" },
+                { label: "Tilt Left (-1°)", value: "-1" },
+                { label: "Tilt Right (+1°)", value: "1" },
+                { label: "Tilt Right (+2°)", value: "2" },
+              ],
+            },
+          },
+          getItemSummary: (item, idx) =>
+            item?.caption || item?.alt || `Image ${(idx ?? 0) + 1}`,
+          defaultItemProps: {
+            url: "/images/redflowers.png",
+            alt: "Wedding photo",
+            caption: "New Memory",
+            subcaption: "Captured with love",
+            rotation: "0",
+          },
+        },
+      },
+      defaultProps: {
+        title: "Moments Together",
+        subtitle: "A glimpse into our story and favorite memories",
+        showTitle: true,
+        images: defaultCarouselImages,
+        speed: "slow",
+        direction: "left",
+        pauseOnHover: true,
+        showControls: true,
+        showPauseButton: true,
+        showScrollHint: true,
+        showEdgeFades: false,
+        fullBleed: true,
+        cardStyle: "polaroid",
+        cardHeight: "md",
+        aspectRatio: "portrait",
+        gap: "md",
+        subtleTilt: true,
+        showDivider: true,
+      },
+      render: (props) => <ImageCarouselBlock {...props} />,
+    },
+
+    StickerRibbonBlock: {
+      fields: {
+        fullBleed: {
+          type: "radio",
+          label: "Screen Span",
+          options: [
+            { label: "Full Screen Border-to-Border", value: true },
+            { label: "Contained", value: false },
+          ],
+        },
+        distribution: {
+          type: "select",
+          label: "Horizontal Distribution",
+          options: [
+            { label: "Evenly Distributed (Border to Border)", value: "space-evenly" },
+            { label: "Space Between (Edges Anchored)", value: "space-between" },
+            { label: "Space Around", value: "space-around" },
+            { label: "Centered", value: "center" },
+          ],
+        },
+        baseSize: {
+          type: "select",
+          label: "Sticker Size",
+          options: [
+            { label: "Extra Small (48px)", value: "xs" },
+            { label: "Small (64px)", value: "sm" },
+            { label: "Medium (80px)", value: "md" },
+            { label: "Large (96px)", value: "lg" },
+            { label: "Extra Large (112px)", value: "xl" },
+          ],
+        },
+        borderStyle: {
+          type: "select",
+          label: "Sticker Border Effect",
+          options: [
+            { label: "None (Clean / Raw Stickers)", value: "none" },
+            { label: "Crisp White Die-Cut Outline", value: "white-diecut" },
+            { label: "Thin White Sticker Edge", value: "thin-white" },
+            { label: "Subtle Wedding Red Outline", value: "red-outline" },
+          ],
+        },
+        shadowStyle: {
+          type: "select",
+          label: "Sticker Shadow Effect",
+          options: [
+            { label: "None (Flat / No Shadow)", value: "none" },
+            { label: "Realistic Sticker Depth Shadow", value: "sticker-depth" },
+            { label: "Soft Gentle Shadow", value: "soft" },
+            { label: "Flat Vintage Shadow", value: "flat" },
+          ],
+        },
+        tiltStyle: {
+          type: "select",
+          label: "Sticker Tilt",
+          options: [
+            { label: "None (Straight 0°)", value: "none" },
+            { label: "Subtle Alternating (-2° to +3°)", value: "subtle" },
+            { label: "Playful Tilts (-6° to +6°)", value: "playful" },
+            { label: "Per-Sticker Custom Angles", value: "per-sticker" },
+          ],
+        },
+        hoverEffect: {
+          type: "select",
+          label: "Hover Reaction",
+          options: [
+            { label: "None (Static on Hover)", value: "none" },
+            { label: "Scale / Pop Up", value: "scale" },
+            { label: "Lift Upward", value: "lift" },
+            { label: "Playful Wiggle", value: "wiggle" },
+          ],
+        },
+        gap: {
+          type: "select",
+          label: "Spacing / Gap",
+          options: [
+            { label: "Compact", value: "sm" },
+            { label: "Comfortable", value: "md" },
+            { label: "Spacious", value: "lg" },
+            { label: "Extra Spacious", value: "xl" },
+          ],
+        },
+        paddingY: {
+          type: "select",
+          label: "Vertical Spacing",
+          options: [
+            { label: "None", value: "none" },
+            { label: "Extra Small", value: "xs" },
+            { label: "Small", value: "sm" },
+            { label: "Medium", value: "md" },
+            { label: "Large", value: "lg" },
+          ],
+        },
+        lineDivider: {
+          type: "select",
+          label: "Optional Divider Line",
+          options: [
+            { label: "None (Pure White / Open Space)", value: "none" },
+            { label: "Subtle Solid Lines", value: "subtle-solid" },
+            { label: "Dashed Divider Lines", value: "dashed" },
+            { label: "Dotted Divider Lines", value: "dotted" },
+          ],
+        },
+        stickers: {
+          type: "array",
+          label: "Stickers",
+          arrayFields: {
+            url: { type: "text", label: "Image URL or Path" },
+            alt: { type: "text", label: "Alt Text" },
+            rotation: {
+              type: "select",
+              label: "Rotation Angle (if Per-Sticker)",
+              options: [
+                { label: "None (0°)", value: "0" },
+                { label: "Tilt Left (-6°)", value: "-6" },
+                { label: "Tilt Left (-4°)", value: "-4" },
+                { label: "Tilt Left (-2°)", value: "-2" },
+                { label: "Tilt Right (+2°)", value: "2" },
+                { label: "Tilt Right (+4°)", value: "4" },
+                { label: "Tilt Right (+6°)", value: "6" },
+              ],
+            },
+            size: {
+              type: "select",
+              label: "Individual Size Override",
+              options: [
+                { label: "Use Base Size", value: "md" },
+                { label: "Extra Small", value: "xs" },
+                { label: "Small", value: "sm" },
+                { label: "Medium", value: "md" },
+                { label: "Large", value: "lg" },
+                { label: "Extra Large", value: "xl" },
+              ],
+            },
+          },
+          getItemSummary: (item, idx) => item?.alt || `Sticker ${(idx ?? 0) + 1}`,
+          defaultItemProps: {
+            url: "/images/fabricheart.png",
+            alt: "Heart sticker",
+            rotation: "0",
+            size: "md",
+          },
+        },
+      },
+      defaultProps: {
+        stickers: defaultStickers,
+        fullBleed: true,
+        distribution: "space-evenly",
+        gap: "md",
+        paddingY: "md",
+        maxWidth: "full",
+        borderStyle: "none",
+        shadowStyle: "none",
+        tiltStyle: "subtle",
+        hoverEffect: "scale",
+        baseSize: "md",
+        lineDivider: "none",
+      },
+      render: (props) => <StickerRibbonBlock {...props} />,
     },
   },
 };

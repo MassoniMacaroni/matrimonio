@@ -1033,3 +1033,48 @@ export const SparkleCluster: React.FC<{ className?: string }> = ({ className = "
   </span>
 );
 
+// Cute Hand-Drawn Doodle Heart
+export const DoodleHeartIllustration: React.FC<{ className?: string }> = ({ className = "" }) => (
+  <div className={`flex justify-center items-center select-none ${className}`}>
+    <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-14 h-14 overflow-visible">
+      <path
+        d="M40 70 C 20 54, 8 40, 8 26 C 8 14, 18 6, 28 6 C 34 6, 38 10, 40 14 C 42 10, 46 6, 52 6 C 62 6, 72 14, 72 26 C 72 40, 60 54, 40 70 Z"
+        stroke={STROKE_COLOR}
+        strokeWidth="2.2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        fill={STROKE_COLOR}
+        fillOpacity="0.12"
+      />
+      {/* Inner sketchy curve highlight */}
+      <path
+        d="M20 22 C 22 16, 28 14, 32 16"
+        stroke={STROKE_COLOR}
+        strokeWidth="1.6"
+        strokeLinecap="round"
+      />
+    </svg>
+  </div>
+);
+
+// Entwined Wedding Rings with Diamond Sparkle
+export const EntwinedRingsIllustration: React.FC<{ className?: string }> = ({ className = "" }) => (
+  <div className={`flex justify-center items-center select-none ${className}`}>
+    <svg viewBox="0 0 100 80" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-16 h-14 overflow-visible">
+      {/* Left Ring */}
+      <circle cx="36" cy="44" r="22" stroke={STROKE_COLOR} strokeWidth="2.4" fill="none" />
+      <circle cx="36" cy="44" r="17" stroke={STROKE_COLOR} strokeWidth="1.2" strokeOpacity="0.5" fill="none" />
+      {/* Right Ring */}
+      <circle cx="62" cy="44" r="22" stroke={STROKE_COLOR} strokeWidth="2.4" fill="none" />
+      <circle cx="62" cy="44" r="17" stroke={STROKE_COLOR} strokeWidth="1.2" strokeOpacity="0.5" fill="none" />
+      {/* Diamond Sparkle on Right Ring */}
+      <path
+        d="M62 14 L 64 20 L 70 22 L 64 24 L 62 30 L 60 24 L 54 22 L 60 20 Z"
+        fill={STROKE_COLOR}
+      />
+      <circle cx="62" cy="22" r="1.5" fill="#f6efe5" />
+    </svg>
+  </div>
+);
+
+

@@ -29,6 +29,7 @@ export const useConfetti = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const particlesRef = useRef<ConfettiParticle[]>([]);
   const animationFrameRef = useRef<number | null>(null);
+  const renderFrameRef = useRef<() => void>(() => {});
 
   const renderFrame = useCallback(() => {
     const canvas = canvasRef.current;
@@ -96,7 +97,9 @@ export const useConfetti = () => {
     }
 
     if (particles.length > 0) {
-      animationFrameRef.current = requestAnimationFrame(renderFrame);
+      animationFrameRef.current = requestAnimationFrame(() => {
+        renderFrameRef.current();
+      });
     } else {
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
@@ -104,6 +107,10 @@ export const useConfetti = () => {
       }
     }
   }, []);
+
+  useEffect(() => {
+    renderFrameRef.current = renderFrame;
+  }, [renderFrame]);
 
   const fire = useCallback(
     (originX?: number, originY?: number, particleCount = 75) => {

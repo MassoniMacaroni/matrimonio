@@ -39,9 +39,11 @@ export const FooterBlock: React.FC<FooterBlockProps> = ({
         </div>
 
         {/* Closing heartfelt text */}
-        <p className="max-w-md mx-auto text-xs sm:text-sm text-[#4a2824]/90 font-serif leading-relaxed mb-6 px-2">
-          {message}
-        </p>
+        {message ? (
+          <p className="max-w-md mx-auto text-xs sm:text-sm text-[#4a2824]/90 font-serif leading-relaxed mb-6 px-2">
+            {message}
+          </p>
+        ) : null}
 
         {/* Signature in chunky Fraunces font */}
         <h4 className="text-2xl sm:text-3xl font-display font-extrabold tracking-normal text-[#b3392d]">

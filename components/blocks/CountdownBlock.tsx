@@ -47,7 +47,7 @@ export const CountdownBlock: React.FC<CountdownBlockProps> = ({
   }, [targetDate]);
 
   return (
-    <section id="countdown" className="py-8 px-4 text-center max-w-xl mx-auto">
+    <section id="countdown" className="pt-8 pb-16 px-4 text-center max-w-xl mx-auto">
       <motion.div
         initial={false}
         whileInView={{ opacity: 1, y: 0 }}

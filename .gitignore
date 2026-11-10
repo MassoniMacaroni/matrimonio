@@ -26,6 +26,9 @@ yarn-error.log*
 .env*.local
 .env
 
+# tools
+/token-meter/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

@@ -7,88 +7,421 @@
     },
     "content": [
       {
-        "type": "HeroBlock",
+        "type": "ImageCarouselBlock",
         "props": {
-          "id": "HeroBlock-1",
-          "headline": "SAVE THE DATE",
-          "names": "Jules & Jon",
-          "dateText": "Saturday, September 18th 2027",
-          "locationText": "The Rocks, Sydney · Australia",
-          "illustrationType": "hands",
-          "buttonText": "",
-          "buttonLink": "",
-          "welcomeMessage": "We're tying the knot! Save our date on your calendar. Formal invitations, details & RSVP to follow.",
-          "showBottomDoodle": false,
-          "showDivider": true
+          "title": "Jules n Jon",
+          "subtitle": "A glimpse into our story and favorite memories",
+          "showTitle": false,
+          "images": [
+            {
+              "url": "/images/JNJ1.jpg",
+              "alt": "Jules n Jon 1",
+              "caption": "",
+              "subcaption": "",
+              "rotation": "-2"
+            },
+            {
+              "url": "/images/JNJ2.jpg",
+              "alt": "Jules n Jon 2",
+              "caption": "",
+              "subcaption": "",
+              "rotation": "0"
+            },
+            {
+              "url": "/images/JNJ3.jpg",
+              "alt": "Jules n Jon 3",
+              "caption": "",
+              "subcaption": "",
+              "rotation": "1"
+            },
+            {
+              "url": "/images/JNJ4.jpg",
+              "alt": "Jules n Jon 4",
+              "caption": "",
+              "subcaption": "",
+              "rotation": "1"
+            },
+            {
+              "url": "/images/JNJ5.jpg",
+              "alt": "Jules n Jon 5",
+              "caption": "",
+              "subcaption": "",
+              "rotation": "-1"
+            },
+            {
+              "url": "/images/JNJ6.jpg",
+              "alt": "Jules n Jon 6",
+              "caption": "",
+              "subcaption": "",
+              "rotation": "2"
+            },
+            {
+              "url": "/images/JNJ7.jpg",
+              "alt": "Jules n Jon 7",
+              "caption": "",
+              "subcaption": "",
+              "rotation": "-1"
+            },
+            {
+              "url": "/images/JNJ8.jpg",
+              "alt": "Jules n Jon 8",
+              "caption": "",
+              "subcaption": "",
+              "rotation": "-1"
+            },
+            {
+              "url": "/images/JNJ9.jpg",
+              "alt": "Jules n Jon 9",
+              "caption": "",
+              "subcaption": "",
+              "rotation": "1"
+            }
+          ],
+          "speed": "fast",
+          "direction": "left",
+          "pauseOnHover": true,
+          "showControls": false,
+          "fullBleed": true,
+          "cardStyle": "flush",
+          "cardHeight": "xs",
+          "aspectRatio": "square",
+          "gap": "none",
+          "subtleTilt": false,
+          "showDivider": true,
+          "id": "ImageCarouselBlock-8e6f04b1-f741-4714-ba30-271a5c10cbb1",
+          "showScrollHint": false,
+          "showPauseButton": false
         }
       },
       {
-        "type": "SaveTheDateBlock",
+        "type": "ContainerBlock",
         "props": {
-          "id": "SaveTheDateBlock-1",
-          "title": "save the date",
-          "fontStyle": "retro",
-          "monthYearText": "Saturday, September 2027",
-          "targetDay": 18,
-          "timeNote": "Formal invitation & details to follow",
-          "showDivider": false
+          "content": [
+            {
+              "type": "HeadingBlock",
+              "props": {
+                "id": "hero-headline",
+                "text": "SAVE THE DATE",
+                "as": "h1",
+                "fontStyle": "retro",
+                "size": "4xl",
+                "color": "primary",
+                "align": "center",
+                "uppercase": true,
+                "tracking": "tight",
+                "withSparkles": true,
+                "marginBottom": "sm"
+              }
+            },
+            {
+              "type": "HeadingBlock",
+              "props": {
+                "id": "hero-names",
+                "text": "Jules & Jon",
+                "as": "h2",
+                "fontStyle": "retro",
+                "size": "4xl",
+                "color": "primary",
+                "align": "center",
+                "uppercase": false,
+                "tracking": "normal",
+                "withSparkles": false,
+                "marginBottom": "sm"
+              }
+            },
+            {
+              "type": "TextBlock",
+              "props": {
+                "id": "hero-date",
+                "content": "Saturday, September 18th 2027",
+                "fontStyle": "serif",
+                "size": "base",
+                "color": "primary",
+                "align": "center",
+                "uppercase": false,
+                "tracking": "wide",
+                "maxWidth": "sm",
+                "marginBottom": "none"
+              }
+            },
+            {
+              "type": "TextBlock",
+              "props": {
+                "id": "hero-location",
+                "content": "The Rocks, Sydney · Australia",
+                "fontStyle": "sans",
+                "size": "xs",
+                "color": "muted",
+                "align": "center",
+                "uppercase": true,
+                "tracking": "widest",
+                "maxWidth": "sm",
+                "marginBottom": "md"
+              }
+            },
+            {
+              "type": "TextBlock",
+              "props": {
+                "id": "hero-welcome",
+                "content": "We're tying the knot! Save our date on your calendar. Formal invitations, details & RSVP to follow.",
+                "fontStyle": "serif",
+                "size": "sm",
+                "color": "body",
+                "align": "center",
+                "uppercase": false,
+                "tracking": "normal",
+                "maxWidth": "sm",
+                "marginBottom": "none"
+              }
+            }
+          ],
+          "id": "hero-container",
+          "variant": "standard",
+          "maxWidth": "xl",
+          "paddingY": "lg",
+          "align": "center",
+          "showDivider": false,
+          "animate": true
         }
       },
       {
-        "type": "WineStreamDetailsBlock",
+        "type": "AnimatedImageBlock",
         "props": {
-          "id": "WineStreamDetailsBlock-1",
-          "title": "the details",
-          "subtitle": "save the date for our celebration",
-          "item1Heading": "when",
-          "item1Body": "Saturday, September 18th, 2027",
-          "item2Heading": "where",
-          "item2Body": "The Rocks, Sydney · New South Wales, Australia",
-          "item3Heading": "what to expect",
-          "item3Body": "An unforgettable evening of great food, wine, and dancing. Formal invitations & RSVP will follow!",
-          "item4Heading": "who to contact",
-          "item4Body": "Have questions in the meantime? Reach us anytime at hello@julesnjon.com",
-          "showDivider": true
+          "imageType": "url",
+          "illustration": "cherries",
+          "src": "/images/khheart.png",
+          "alt": "Wedding decoration",
+          "frameStyle": "none",
+          "size": "md",
+          "aspectRatio": "auto",
+          "caption": "",
+          "rotation": "0",
+          "animation": "float-sway",
+          "speed": "normal",
+          "delay": "0",
+          "hoverEffect": "lift",
+          "placement": "inline",
+          "align": "center",
+          "hideOnMobile": false,
+          "zIndex": "normal",
+          "linkUrl": "",
+          "newTab": false,
+          "id": "AnimatedImageBlock-dd497dbb-1a11-4d8b-9f97-f5d7a5136ecd"
         }
       },
       {
-        "type": "CelebrationPopperBlock",
+        "type": "ContainerBlock",
         "props": {
-          "id": "CelebrationPopperBlock-1",
-          "title": "celebrate with us",
-          "subtitle": "save the date & toast the happy couple!",
-          "showDivider": true
+          "content": [
+            {
+              "type": "HeadingBlock",
+              "props": {
+                "id": "std-title",
+                "text": "save the date",
+                "as": "h3",
+                "fontStyle": "retro",
+                "size": "4xl",
+                "color": "primary",
+                "align": "center",
+                "uppercase": false,
+                "tracking": "normal",
+                "withSparkles": false,
+                "marginBottom": "sm"
+              }
+            },
+            {
+              "type": "CalendarHeartBlock",
+              "props": {
+                "id": "std-heart",
+                "targetDay": 18,
+                "monthYearText": "Saturday, September 2027",
+                "showFlourish": true
+              }
+            },
+            {
+              "type": "TextBlock",
+              "props": {
+                "id": "std-note",
+                "content": "Formal invitation & details to follow",
+                "fontStyle": "sans",
+                "size": "xs",
+                "color": "muted",
+                "align": "center",
+                "uppercase": false,
+                "tracking": "wide",
+                "maxWidth": "sm",
+                "marginBottom": "none"
+              }
+            }
+          ],
+          "id": "save-the-date-container",
+          "variant": "standard",
+          "maxWidth": "xl",
+          "paddingY": "md",
+          "align": "center",
+          "showDivider": false,
+          "animate": true
         }
       },
       {
-        "type": "CalendarReminderBlock",
+        "type": "StickerRibbonBlock",
         "props": {
-          "id": "CalendarReminderBlock-1",
-          "title": "mark your calendar",
-          "subtitle": "save the date so you won't miss our big day!",
-          "eventName": "Jules & Jon Wedding",
-          "eventDate": "20270918",
-          "eventLocation": "The Rocks, Sydney NSW, Australia",
-          "eventDetails": "Save the date for the wedding celebration of Jules & Jon! Formal invitation to follow.",
-          "showDivider": false
+          "stickers": [
+            {
+              "url": "/images/fabricheart.png",
+              "alt": "Fabric Heart",
+              "rotation": "-4"
+            },
+            {
+              "url": "/images/redcocktail.png",
+              "alt": "Red Cocktail",
+              "rotation": "2"
+            },
+            {
+              "url": "/images/doxxie.png",
+              "alt": "Doxxie Pup",
+              "rotation": "-2"
+            },
+            {
+              "url": "/images/weddingcake.png",
+              "alt": "Wedding Cake",
+              "rotation": "4"
+            },
+            {
+              "url": "/images/vinosketch.png",
+              "alt": "Vino Glass",
+              "rotation": "-4"
+            },
+            {
+              "url": "/images/bordercollie.png",
+              "alt": "Border Collie",
+              "rotation": "2"
+            },
+            {
+              "url": "/images/martini.png",
+              "alt": "Martini",
+              "rotation": "-2"
+            },
+            {
+              "url": "/images/discoball.png",
+              "alt": "Disco Ball",
+              "rotation": "4"
+            }
+          ],
+          "fullBleed": true,
+          "distribution": "space-evenly",
+          "gap": "md",
+          "paddingY": "md",
+          "maxWidth": "full",
+          "borderStyle": "none",
+          "shadowStyle": "none",
+          "tiltStyle": "subtle",
+          "hoverEffect": "scale",
+          "baseSize": "md",
+          "lineDivider": "none",
+          "id": "StickerRibbonBlock-30d3b2cc-0643-417e-959a-673c96c5a32e"
         }
       },
       {
-        "type": "FooterBlock",
+        "type": "ContainerBlock",
         "props": {
-          "id": "FooterBlock-1",
-          "message": "We can't wait to celebrate our special day with all of our family and friends. Formal invitations and RSVP details to follow!",
-          "signature": "Jules & Jon",
-          "domain": "julesnjon.com"
+          "content": [
+            {
+              "type": "IllustrationBlock",
+              "props": {
+                "id": "calendar-stamp",
+                "illustration": "stamp",
+                "align": "center",
+                "marginY": "sm"
+              }
+            },
+            {
+              "type": "HeadingBlock",
+              "props": {
+                "id": "calendar-title",
+                "text": "mark your calendar",
+                "as": "h2",
+                "fontStyle": "retro",
+                "size": "3xl",
+                "color": "primary",
+                "align": "center",
+                "uppercase": false,
+                "tracking": "normal",
+                "withSparkles": false,
+                "marginBottom": "sm"
+              }
+            },
+            {
+              "type": "TextBlock",
+              "props": {
+                "id": "calendar-subtitle",
+                "content": "save the date so you won't miss our big day!",
+                "fontStyle": "sans",
+                "size": "xs",
+                "color": "muted",
+                "align": "center",
+                "uppercase": false,
+                "tracking": "wide",
+                "maxWidth": "sm",
+                "marginBottom": "sm"
+              }
+            },
+            {
+              "type": "AddToCalendarBlock",
+              "props": {
+                "id": "calendar-buttons",
+                "eventName": "Jules & Jon Wedding",
+                "eventDate": "20270918",
+                "eventLocation": "The Rocks, Sydney NSW, Australia",
+                "eventDetails": "Save the date for the wedding celebration of Jules & Jon! Formal invitation to follow."
+              }
+            }
+          ],
+          "id": "calendar-reminder-container",
+          "variant": "standard",
+          "maxWidth": "xl",
+          "paddingY": "md",
+          "align": "center",
+          "showDivider": false,
+          "animate": true
         }
       },
       {
-        "type": "CountdownBlock",
+        "type": "ContainerBlock",
         "props": {
-          "id": "CountdownBlock-1",
-          "title": "counting the days",
-          "fontStyle": "retro",
-          "targetDate": "2027-09-18T15:00:00"
+          "content": [
+            {
+              "type": "HeadingBlock",
+              "props": {
+                "id": "countdown-title",
+                "text": "counting the days",
+                "as": "h3",
+                "fontStyle": "retro",
+                "size": "4xl",
+                "color": "primary",
+                "align": "center",
+                "uppercase": false,
+                "tracking": "normal",
+                "withSparkles": false,
+                "marginBottom": "md"
+              }
+            },
+            {
+              "type": "CountdownTimerBlock",
+              "props": {
+                "id": "countdown-timer",
+                "targetDate": "2027-09-18T15:00:00",
+                "showFlourish": true
+              }
+            }
+          ],
+          "id": "countdown-container",
+          "variant": "standard",
+          "maxWidth": "xl",
+          "paddingY": "xl",
+          "align": "center",
+          "showDivider": false,
+          "animate": true
         }
       }
     ],
