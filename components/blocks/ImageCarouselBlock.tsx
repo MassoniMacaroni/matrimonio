@@ -436,6 +436,13 @@ export const ImageCarouselBlock: React.FC<ImageCarouselBlockProps> = ({
         >
           {repeatedImages.map((img, idx) => {
             const rotClass = getCardRotationClass(idx, img.rotation);
+            const isAutoAspect = aspectRatio === "auto";
+            const imgSizingClass = isAutoAspect
+              ? `${heightClasses[cardHeight]} w-auto max-w-[85vw] sm:max-w-none`
+              : "w-full h-full";
+            const containerAspectClass = isAutoAspect
+              ? "w-auto max-w-[85vw] sm:max-w-none"
+              : aspectRatioClasses[aspectRatio] || aspectRatioClasses.portrait;
 
             return (
               <div
@@ -449,15 +456,15 @@ export const ImageCarouselBlock: React.FC<ImageCarouselBlockProps> = ({
                 {/* Seamless Flush Style (Edge-to-edge, no padding, sharp corners) */}
                 {cardStyle === "flush" && (
                   <div
-                    className={`relative overflow-hidden ${heightClasses[cardHeight]} ${aspectRatioClasses[aspectRatio]}`}
+                    className={`relative overflow-hidden shrink-0 ${heightClasses[cardHeight]} ${containerAspectClass}`}
                   >
                     <img
                       src={img.url}
                       alt={img.alt || img.caption || `Carousel photo ${idx + 1}`}
                       onLoad={handleImageLoad}
                       draggable={false}
-                      className="w-full h-full object-cover select-none pointer-events-none"
-                      loading="lazy"
+                      className={`${imgSizingClass} object-cover select-none pointer-events-none block`}
+                      loading={idx < 8 ? "eager" : "lazy"}
                     />
                     {(img.caption || img.subcaption) && (
                       <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent p-2.5 pt-6 text-white text-left pointer-events-none">
@@ -477,17 +484,21 @@ export const ImageCarouselBlock: React.FC<ImageCarouselBlockProps> = ({
                 )}
                 {/* Polaroid Frame */}
                 {cardStyle === "polaroid" && (
-                  <div className="bg-white p-3 pb-4 rounded-xs shadow-[0_4px_16px_rgba(74,40,36,0.12)] border border-[#b3392d]/10 flex flex-col items-center max-w-[280px] sm:max-w-[320px]">
+                  <div
+                    className={`bg-white p-3 pb-4 rounded-xs shadow-[0_4px_16px_rgba(74,40,36,0.12)] border border-[#b3392d]/10 flex flex-col items-center shrink-0 ${
+                      isAutoAspect ? "w-auto max-w-[85vw] sm:max-w-[320px]" : "max-w-[280px] sm:max-w-[320px]"
+                    }`}
+                  >
                     <div
-                      className={`relative overflow-hidden rounded-xs bg-[#f6efe5] ${heightClasses[cardHeight]} ${aspectRatioClasses[aspectRatio]}`}
+                      className={`relative overflow-hidden rounded-xs bg-[#f6efe5] shrink-0 ${heightClasses[cardHeight]} ${containerAspectClass}`}
                     >
                       <img
                         src={img.url}
                         alt={img.alt || img.caption || `Carousel photo ${idx + 1}`}
                         onLoad={handleImageLoad}
                         draggable={false}
-                        className="w-full h-full object-cover select-none pointer-events-none"
-                        loading="lazy"
+                        className={`${imgSizingClass} object-cover select-none pointer-events-none block`}
+                        loading={idx < 8 ? "eager" : "lazy"}
                       />
                     </div>
                     {(img.caption || img.subcaption) && (
@@ -509,17 +520,21 @@ export const ImageCarouselBlock: React.FC<ImageCarouselBlockProps> = ({
 
                 {/* Vintage Card Style */}
                 {cardStyle === "vintage-card" && (
-                  <div className="bg-[#fcfaf7] border border-[#b3392d]/25 p-2 sm:p-2.5 rounded-lg shadow-[0_3px_12px_rgba(179,57,45,0.08)] flex flex-col max-w-[280px] sm:max-w-[320px]">
+                  <div
+                    className={`bg-[#fcfaf7] border border-[#b3392d]/25 p-2 sm:p-2.5 rounded-lg shadow-[0_3px_12px_rgba(179,57,45,0.08)] flex flex-col shrink-0 ${
+                      isAutoAspect ? "w-auto max-w-[85vw] sm:max-w-[320px]" : "max-w-[280px] sm:max-w-[320px]"
+                    }`}
+                  >
                     <div
-                      className={`relative overflow-hidden rounded-md border border-[#b3392d]/15 bg-white ${heightClasses[cardHeight]} ${aspectRatioClasses[aspectRatio]}`}
+                      className={`relative overflow-hidden rounded-md border border-[#b3392d]/15 bg-white shrink-0 ${heightClasses[cardHeight]} ${containerAspectClass}`}
                     >
                       <img
                         src={img.url}
                         alt={img.alt || img.caption || `Carousel photo ${idx + 1}`}
                         onLoad={handleImageLoad}
                         draggable={false}
-                        className="w-full h-full object-cover select-none pointer-events-none"
-                        loading="lazy"
+                        className={`${imgSizingClass} object-cover select-none pointer-events-none block`}
+                        loading={idx < 8 ? "eager" : "lazy"}
                       />
                     </div>
                     {img.caption && (
@@ -540,15 +555,17 @@ export const ImageCarouselBlock: React.FC<ImageCarouselBlockProps> = ({
                 {/* Modern Style with Floating Gradient */}
                 {cardStyle === "modern" && (
                   <div
-                    className={`relative overflow-hidden rounded-2xl shadow-md border border-white/40 group ${heightClasses[cardHeight]} ${aspectRatioClasses[aspectRatio]} min-w-[120px] sm:min-w-[140px]`}
+                    className={`relative overflow-hidden rounded-2xl shadow-md border border-white/40 group shrink-0 ${heightClasses[cardHeight]} ${containerAspectClass} ${
+                      isAutoAspect ? "" : "min-w-[120px] sm:min-w-[140px]"
+                    }`}
                   >
                     <img
                       src={img.url}
                       alt={img.alt || img.caption || `Carousel photo ${idx + 1}`}
                       onLoad={handleImageLoad}
                       draggable={false}
-                      className="w-full h-full object-cover select-none pointer-events-none transition-transform duration-500 group-hover:scale-105"
-                      loading="lazy"
+                      className={`${imgSizingClass} object-cover select-none pointer-events-none block transition-transform duration-500 group-hover:scale-105`}
+                      loading={idx < 8 ? "eager" : "lazy"}
                     />
                     {(img.caption || img.subcaption) && (
                       <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 via-black/35 to-transparent p-3 pt-6 text-white text-left">
@@ -570,15 +587,17 @@ export const ImageCarouselBlock: React.FC<ImageCarouselBlockProps> = ({
                 {/* Minimal Style */}
                 {cardStyle === "minimal" && (
                   <div
-                    className={`relative overflow-hidden rounded-xl shadow-xs border border-[#b3392d]/10 ${heightClasses[cardHeight]} ${aspectRatioClasses[aspectRatio]} min-w-[100px] sm:min-w-[120px]`}
+                    className={`relative overflow-hidden rounded-xl shadow-xs border border-[#b3392d]/10 shrink-0 ${heightClasses[cardHeight]} ${containerAspectClass} ${
+                      isAutoAspect ? "" : "min-w-[100px] sm:min-w-[120px]"
+                    }`}
                   >
                     <img
                       src={img.url}
                       alt={img.alt || img.caption || `Carousel photo ${idx + 1}`}
                       onLoad={handleImageLoad}
                       draggable={false}
-                      className="w-full h-full object-cover select-none pointer-events-none"
-                      loading="lazy"
+                      className={`${imgSizingClass} object-cover select-none pointer-events-none block`}
+                      loading={idx < 8 ? "eager" : "lazy"}
                     />
                   </div>
                 )}

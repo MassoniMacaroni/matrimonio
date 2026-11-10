@@ -58,9 +58,9 @@ const colorClasses = {
 };
 
 const alignClasses = {
-  center: "text-center",
-  left: "text-left",
-  right: "text-right",
+  center: "text-center w-full",
+  left: "text-left w-full",
+  right: "text-right w-full",
 };
 
 const trackingClasses = {

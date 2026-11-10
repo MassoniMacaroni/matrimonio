@@ -17,8 +17,7 @@ const justifyClasses: Record<string, string> = {
   between: "justify-between",
   evenly: "justify-evenly",
   around: "justify-around",
-  "center-split":
-    "justify-between [&>*]:flex-1 [&>*:nth-child(2)]:flex-none [&>*:nth-child(2)]:shrink-0 [&>*:first-child]:text-left [&>*:last-child]:text-right",
+  "center-split": "center-split-row",
 };
 
 const gapClasses: Record<string, string> = {
@@ -37,11 +36,15 @@ export const FlexRowBlock: React.FC<FlexRowBlockProps> = ({
 }) => {
   const Items = items as SlotComponent | undefined;
 
-  const layoutClasses = `relative w-full flex items-center ${
-    justifyClasses[justify] || "justify-center"
-  } ${gapClasses[gap] || "gap-3 sm:gap-4 md:gap-6"} ${
-    wrap ? "flex-wrap" : "flex-nowrap"
-  } my-2`;
+  const isCenterSplit = justify === "center-split";
+
+  const layoutClasses = isCenterSplit
+    ? `relative w-full center-split-row ${gapClasses[gap] || "gap-3 sm:gap-4 md:gap-6"} my-2`
+    : `relative w-full flex items-center ${
+        justifyClasses[justify] || "justify-center"
+      } ${gapClasses[gap] || "gap-3 sm:gap-4 md:gap-6"} ${
+        wrap ? "flex-wrap" : "flex-nowrap"
+      } my-2`;
 
   if (!Items) return null;
 

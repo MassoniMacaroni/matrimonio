@@ -236,11 +236,11 @@ export const config: Config<Props> = {
           type: "select",
           label: "Justify",
           options: [
-            { label: "Center", value: "center" },
+            { label: "Symmetrical Center (Lock Middle to 50%)", value: "center-split" },
+            { label: "Center (Standard Flex)", value: "center" },
             { label: "Space Evenly", value: "evenly" },
             { label: "Space Between", value: "between" },
             { label: "Space Around", value: "around" },
-            { label: "Symmetrical Center (Lock Middle to 50%)", value: "center-split" },
             { label: "Start / Left", value: "start" },
             { label: "End / Right", value: "end" },
           ],

@@ -44,11 +44,11 @@ export const defaultStickers: StickerItem[] = [
 ];
 
 const sizeMap = {
-  xs: "w-10 h-10 sm:w-12 sm:h-12",
-  sm: "w-12 h-12 sm:w-16 sm:h-16",
-  md: "w-16 h-16 sm:w-20 sm:h-20",
-  lg: "w-20 h-20 sm:w-24 sm:h-24",
-  xl: "w-24 h-24 sm:w-28 sm:h-28",
+  xs: "w-6 h-6 sm:w-12 sm:h-12",
+  sm: "w-8 h-8 sm:w-16 sm:h-16",
+  md: "w-10 h-10 sm:w-20 sm:h-20",
+  lg: "w-12 h-12 sm:w-24 sm:h-24",
+  xl: "w-14 h-14 sm:w-28 sm:h-28",
 };
 
 const paddingYMap = {
@@ -60,10 +60,10 @@ const paddingYMap = {
 };
 
 const gapMap = {
-  sm: "gap-3 sm:gap-6",
-  md: "gap-4 sm:gap-8",
-  lg: "gap-6 sm:gap-12",
-  xl: "gap-8 sm:gap-16",
+  sm: "gap-1.5 sm:gap-6",
+  md: "gap-2 sm:gap-8",
+  lg: "gap-3 sm:gap-12",
+  xl: "gap-4 sm:gap-16",
 };
 
 const distributionMap = {
@@ -192,12 +192,12 @@ export const StickerRibbonBlock: React.FC<StickerRibbonBlockProps> = ({
       <div
         className={`${
           fullBleed
-            ? "w-screen relative left-1/2 -translate-x-1/2 max-w-[100vw] px-4 sm:px-8"
-            : `${maxWidthClass} px-4`
+            ? "w-screen relative left-1/2 -translate-x-1/2 max-w-[100vw] px-2 sm:px-8"
+            : `${maxWidthClass} px-2 sm:px-4`
         }`}
       >
         <div
-          className={`flex items-center flex-wrap sm:flex-nowrap ${distributionMap[distribution]} ${gapMap[gap]} w-full`}
+          className={`flex items-center flex-nowrap ${distributionMap[distribution]} ${gapMap[gap]} w-full`}
         >
           {safeStickers.map((item, idx) => {
             const rotClass = getRotationClass(idx, item.rotation);
@@ -207,14 +207,14 @@ export const StickerRibbonBlock: React.FC<StickerRibbonBlockProps> = ({
             return (
               <div
                 key={`${item.url}-${idx}`}
-                className={`relative shrink-0 flex items-center justify-center select-none cursor-default ${rotClass} ${hoverEffectMap[hoverEffect]}`}
+                className={`relative shrink min-w-0 flex items-center justify-center select-none cursor-default ${rotClass} ${hoverEffectMap[hoverEffect]}`}
               >
                 <img
                   src={item.url}
                   alt={item.alt || `Sticker ${idx + 1}`}
                   draggable={false}
                   style={filterStyle}
-                  className={`${sizeClass} object-contain pointer-events-none transition-all duration-200`}
+                  className={`${sizeClass} max-w-full max-h-full object-contain pointer-events-none transition-all duration-200`}
                   loading="lazy"
                 />
               </div>

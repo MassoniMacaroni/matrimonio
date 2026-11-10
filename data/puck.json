@@ -259,7 +259,7 @@
                     "type": "HeadingBlock",
                     "props": {
                       "id": "hero-name-jules",
-                      "text": " Julia ",
+                      "text": "Julia",
                       "as": "h2",
                       "fontStyle": "craze",
                       "size": "4xl",
