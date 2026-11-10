@@ -2,7 +2,6 @@
 /* eslint-disable @next/next/no-img-element */
 
 import React, { useRef, useState, useEffect, useCallback } from "react";
-import { useReducedMotion } from "framer-motion";
 import { RibbonDivider } from "../decorations/Illustrations";
 
 export type CarouselImageItem = {
@@ -157,7 +156,6 @@ export const ImageCarouselBlock: React.FC<ImageCarouselBlockProps> = ({
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
-  const shouldReduceMotion = useReducedMotion();
 
   const [isPausedByUser, setIsPausedByUser] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
@@ -245,7 +243,6 @@ export const ImageCarouselBlock: React.FC<ImageCarouselBlockProps> = ({
       lastTime = currentTime;
 
       const canAutoScroll =
-        !shouldReduceMotion &&
         !isPausedByUser &&
         baseSpeed > 0 &&
         !isDragging &&
@@ -281,7 +278,6 @@ export const ImageCarouselBlock: React.FC<ImageCarouselBlockProps> = ({
     isHovered,
     isDragging,
     isPausedByUser,
-    shouldReduceMotion,
     singleSetWidth,
   ]);
 

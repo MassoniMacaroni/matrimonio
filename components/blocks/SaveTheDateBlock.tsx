@@ -9,8 +9,29 @@ export type SaveTheDateBlockProps = {
   monthYearText?: string;
   targetDay?: number;
   timeNote?: string;
-  fontStyle?: "retro" | "script";
+  fontStyle?:
+    | "retro"
+    | "script"
+    | "serif"
+    | "sans"
+    | "harmera"
+    | "primate"
+    | "pillar"
+    | "craze"
+    | "chunko";
   showDivider?: boolean;
+};
+
+const titleFontClasses: Record<string, string> = {
+  script: "font-script text-4xl sm:text-5xl",
+  serif: "font-serif font-bold text-3xl sm:text-4xl",
+  sans: "font-sans font-bold text-3xl sm:text-4xl",
+  harmera: "font-harmera text-4xl sm:text-5xl uppercase tracking-wider",
+  primate: "font-primate text-4xl sm:text-5xl uppercase tracking-widest",
+  pillar: "font-pillar text-4xl sm:text-5xl uppercase tracking-widest",
+  craze: "font-craze text-4xl sm:text-5xl uppercase tracking-wider",
+  chunko: "font-chunko text-4xl sm:text-5xl",
+  retro: "font-display font-extrabold text-4xl sm:text-5xl lowercase tracking-normal",
 };
 
 export const SaveTheDateBlock: React.FC<SaveTheDateBlockProps> = ({
@@ -35,12 +56,10 @@ export const SaveTheDateBlock: React.FC<SaveTheDateBlockProps> = ({
         transition={{ duration: 0.6 }}
         className="flex flex-col items-center justify-center"
       >
-        {/* Title in chunky retro Fraunces font or script */}
+        {/* Title */}
         <h3
           className={`${
-            fontStyle === "script"
-              ? "font-script text-4xl sm:text-5xl"
-              : "font-display font-extrabold text-4xl sm:text-5xl lowercase tracking-normal"
+            titleFontClasses[fontStyle] || titleFontClasses.retro
           } text-[#b3392d] mb-2`}
         >
           {title}

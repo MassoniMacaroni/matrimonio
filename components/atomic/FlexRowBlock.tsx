@@ -5,39 +5,49 @@ import type { Slot, SlotComponent } from "@puckeditor/core";
 
 export type FlexRowBlockProps = {
   items?: Slot | SlotComponent;
-  justify?: "center" | "start" | "end" | "between";
-  gap?: "sm" | "md" | "lg";
+  justify?: "center" | "start" | "end" | "between" | "evenly" | "around" | "center-split";
+  gap?: "none" | "sm" | "md" | "lg" | "xl";
   wrap?: boolean;
 };
 
-const justifyClasses = {
+const justifyClasses: Record<string, string> = {
   center: "justify-center",
   start: "justify-start",
   end: "justify-end",
   between: "justify-between",
+  evenly: "justify-evenly",
+  around: "justify-around",
+  "center-split":
+    "justify-between [&>*]:flex-1 [&>*:nth-child(2)]:flex-none [&>*:nth-child(2)]:shrink-0 [&>*:first-child]:text-left [&>*:last-child]:text-right",
 };
 
-const gapClasses = {
+const gapClasses: Record<string, string> = {
+  none: "gap-0",
   sm: "gap-2",
-  md: "gap-3 sm:gap-4",
-  lg: "gap-6",
+  md: "gap-3 sm:gap-4 md:gap-6",
+  lg: "gap-6 sm:gap-8 md:gap-10",
+  xl: "gap-8 sm:gap-12 md:gap-16",
 };
 
 export const FlexRowBlock: React.FC<FlexRowBlockProps> = ({
   items,
   justify = "center",
   gap = "md",
-  wrap = true,
+  wrap = false,
 }) => {
   const Items = items as SlotComponent | undefined;
 
+  const layoutClasses = `relative w-full flex items-center ${
+    justifyClasses[justify] || "justify-center"
+  } ${gapClasses[gap] || "gap-3 sm:gap-4 md:gap-6"} ${
+    wrap ? "flex-wrap" : "flex-nowrap"
+  } my-2`;
+
+  if (!Items) return null;
+
   return (
-    <div
-      className={`relative w-full flex items-center ${justifyClasses[justify] || "justify-center"} ${
-        gapClasses[gap] || "gap-3 sm:gap-4"
-      } ${wrap ? "flex-wrap" : "flex-nowrap"} my-2`}
-    >
-      {Items && <Items />}
+    <div className="relative w-full">
+      <Items className={layoutClasses} />
     </div>
   );
 };

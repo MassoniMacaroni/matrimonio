@@ -8,7 +8,7 @@ import { WashiTape, RibbonDivider } from "../decorations/Illustrations";
 export type ContainerBlockProps = {
   content?: Slot | SlotComponent;
   variant?: "standard" | "card" | "washi-card";
-  maxWidth?: "xs" | "sm" | "md" | "lg" | "xl" | "full";
+  maxWidth?: "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl" | "6xl" | "full";
   paddingY?: "none" | "sm" | "md" | "lg" | "xl";
   align?: "center" | "left" | "right";
   showDivider?: boolean;
@@ -21,6 +21,11 @@ const maxWidthClasses = {
   md: "max-w-md",
   lg: "max-w-lg",
   xl: "max-w-xl",
+  "2xl": "max-w-2xl",
+  "3xl": "max-w-3xl",
+  "4xl": "max-w-4xl",
+  "5xl": "max-w-5xl",
+  "6xl": "max-w-6xl",
   full: "max-w-full",
 };
 

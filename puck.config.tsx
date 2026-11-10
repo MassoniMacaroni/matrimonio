@@ -80,6 +80,19 @@ export type Props = {
   StickerRibbonBlock: StickerRibbonBlockProps;
 };
 
+export const fontStyleOptions = [
+  { label: "Retro Chunky Serif (Fraunces)", value: "retro" },
+  { label: "Calligraphy Script (Alex Brush)", value: "script" },
+  { label: "Classic Serif (Playfair)", value: "serif" },
+  { label: "Clean Sans-Serif", value: "sans" },
+  { label: "Monospace", value: "mono" },
+  { label: "HarmerA", value: "harmera" },
+  { label: "Primate Regular", value: "primate" },
+  { label: "Pillar Regular", value: "pillar" },
+  { label: "Craze", value: "craze" },
+  { label: "Chunko Bold", value: "chunko" },
+];
+
 export const config: Config<Props> = {
   categories: {
     layout: {
@@ -159,6 +172,11 @@ export const config: Config<Props> = {
             { label: "Medium (md - 448px)", value: "md" },
             { label: "Large (lg - 512px)", value: "lg" },
             { label: "Extra Large (xl - 576px)", value: "xl" },
+            { label: "2XL (672px)", value: "2xl" },
+            { label: "3XL (768px)", value: "3xl" },
+            { label: "4XL (896px)", value: "4xl" },
+            { label: "5XL (1024px)", value: "5xl" },
+            { label: "6XL (1152px)", value: "6xl" },
             { label: "Full Width", value: "full" },
           ],
         },
@@ -219,18 +237,23 @@ export const config: Config<Props> = {
           label: "Justify",
           options: [
             { label: "Center", value: "center" },
+            { label: "Space Evenly", value: "evenly" },
+            { label: "Space Between", value: "between" },
+            { label: "Space Around", value: "around" },
+            { label: "Symmetrical Center (Lock Middle to 50%)", value: "center-split" },
             { label: "Start / Left", value: "start" },
             { label: "End / Right", value: "end" },
-            { label: "Space Between", value: "between" },
           ],
         },
         gap: {
           type: "select",
           label: "Item Spacing",
           options: [
+            { label: "None", value: "none" },
             { label: "Small", value: "sm" },
             { label: "Medium", value: "md" },
             { label: "Large", value: "lg" },
+            { label: "Extra Large", value: "xl" },
           ],
         },
         wrap: {
@@ -246,7 +269,7 @@ export const config: Config<Props> = {
         items: [],
         justify: "center",
         gap: "md",
-        wrap: true,
+        wrap: false,
       },
       render: (props) => <FlexRowBlock {...props} />,
     },
@@ -278,6 +301,11 @@ export const config: Config<Props> = {
             { label: "Medium (md - 448px)", value: "md" },
             { label: "Large (lg - 512px)", value: "lg" },
             { label: "Extra Large (xl - 576px)", value: "xl" },
+            { label: "2XL (672px)", value: "2xl" },
+            { label: "3XL (768px)", value: "3xl" },
+            { label: "4XL (896px)", value: "4xl" },
+            { label: "5XL (1024px)", value: "5xl" },
+            { label: "6XL (1152px)", value: "6xl" },
             { label: "Full Width", value: "full" },
           ],
         },
@@ -354,13 +382,7 @@ export const config: Config<Props> = {
         fontStyle: {
           type: "select",
           label: "Font Style",
-          options: [
-            { label: "Retro Chunky Serif (Fraunces)", value: "retro" },
-            { label: "Calligraphy Script (Alex Brush)", value: "script" },
-            { label: "Classic Serif (Playfair)", value: "serif" },
-            { label: "Clean Sans-Serif", value: "sans" },
-            { label: "Monospace", value: "mono" },
-          ],
+          options: fontStyleOptions,
         },
         size: {
           type: "select",
@@ -374,6 +396,7 @@ export const config: Config<Props> = {
             { label: "3XL", value: "3xl" },
             { label: "4XL (Display)", value: "4xl" },
             { label: "5XL (Huge)", value: "5xl" },
+            { label: "6XL (Gigantic)", value: "6xl" },
           ],
         },
         color: {
@@ -452,12 +475,7 @@ export const config: Config<Props> = {
         fontStyle: {
           type: "select",
           label: "Font Style",
-          options: [
-            { label: "Classic Serif", value: "serif" },
-            { label: "Clean Sans", value: "sans" },
-            { label: "Monospace", value: "mono" },
-            { label: "Calligraphy Script", value: "script" },
-          ],
+          options: fontStyleOptions,
         },
         size: {
           type: "select",
@@ -467,6 +485,11 @@ export const config: Config<Props> = {
             { label: "Small (14-16px)", value: "sm" },
             { label: "Base (16-18px)", value: "base" },
             { label: "Large (18-20px)", value: "lg" },
+            { label: "XL (20-24px)", value: "xl" },
+            { label: "2XL (24-30px)", value: "2xl" },
+            { label: "3XL (30-36px)", value: "3xl" },
+            { label: "4XL (Display)", value: "4xl" },
+            { label: "5XL (Huge)", value: "5xl" },
           ],
         },
         color: {
@@ -848,11 +871,17 @@ export const config: Config<Props> = {
             { label: "No", value: false },
           ],
         },
+        fontStyle: {
+          type: "select",
+          label: "Font Style",
+          options: fontStyleOptions,
+        },
       },
       defaultProps: {
         label: "Click Here",
         url: "#",
         variant: "pill-filled",
+        fontStyle: "sans",
         icon: "none",
         download: "",
         align: "center",
@@ -979,10 +1008,22 @@ export const config: Config<Props> = {
             { label: "No", value: false },
           ],
         },
+        headlineFontStyle: {
+          type: "select",
+          label: "Headline Font Style",
+          options: fontStyleOptions,
+        },
+        namesFontStyle: {
+          type: "select",
+          label: "Names Font Style",
+          options: fontStyleOptions,
+        },
       },
       defaultProps: {
         headline: "SAVE THE DATE",
+        headlineFontStyle: "retro",
         names: "Jules & Jon",
+        namesFontStyle: "retro",
         dateText: "Saturday, September 18th 2027",
         locationText: "The Rocks, Sydney · Australia",
         illustrationType: "hands",
@@ -1002,10 +1043,7 @@ export const config: Config<Props> = {
         fontStyle: {
           type: "select",
           label: "Title Font Style",
-          options: [
-            { label: "Retro Chunky Serif", value: "retro" },
-            { label: "Calligraphy Script", value: "script" },
-          ],
+          options: fontStyleOptions,
         },
         monthYearText: { type: "text", label: "Month & Year" },
         targetDay: { type: "number", label: "Target Day (Day of Month)" },
@@ -1036,10 +1074,7 @@ export const config: Config<Props> = {
         fontStyle: {
           type: "select",
           label: "Title Font Style",
-          options: [
-            { label: "Retro Chunky Serif", value: "retro" },
-            { label: "Calligraphy Script", value: "script" },
-          ],
+          options: fontStyleOptions,
         },
         targetDate: { type: "text", label: "Target ISO Date" },
       },

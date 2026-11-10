@@ -4,8 +4,18 @@ import React from "react";
 
 export type TextBlockProps = {
   content?: string;
-  fontStyle?: "serif" | "sans" | "mono" | "script";
-  size?: "xs" | "sm" | "base" | "lg";
+  fontStyle?:
+    | "serif"
+    | "sans"
+    | "mono"
+    | "script"
+    | "retro"
+    | "harmera"
+    | "primate"
+    | "pillar"
+    | "craze"
+    | "chunko";
+  size?: "xs" | "sm" | "base" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl";
   color?: "body" | "primary" | "muted";
   align?: "center" | "left" | "right";
   uppercase?: boolean;
@@ -14,11 +24,17 @@ export type TextBlockProps = {
   marginBottom?: "none" | "sm" | "md" | "lg";
 };
 
-const fontStyleClasses = {
+const fontStyleClasses: Record<string, string> = {
   serif: "font-serif font-medium",
   sans: "font-sans font-medium",
   mono: "font-mono font-medium",
   script: "font-script font-normal",
+  retro: "font-display font-extrabold",
+  harmera: "font-harmera tracking-wide",
+  primate: "font-primate tracking-wider",
+  pillar: "font-pillar tracking-wide",
+  craze: "font-craze tracking-wider",
+  chunko: "font-chunko tracking-normal",
 };
 
 const sizeClasses = {
@@ -26,6 +42,11 @@ const sizeClasses = {
   sm: "text-sm sm:text-base",
   base: "text-base sm:text-lg",
   lg: "text-lg sm:text-xl",
+  xl: "text-xl sm:text-2xl",
+  "2xl": "text-2xl sm:text-3xl",
+  "3xl": "text-3xl sm:text-4xl",
+  "4xl": "text-3xl sm:text-4xl md:text-5xl",
+  "5xl": "text-4xl sm:text-5xl md:text-6xl lg:text-7xl",
 };
 
 const colorClasses = {

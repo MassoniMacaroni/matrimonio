@@ -7,7 +7,28 @@ import { LeafFlourish } from "../decorations/Illustrations";
 export type CountdownBlockProps = {
   title?: string;
   targetDate?: string; // ISO date format, e.g. "2027-09-18T15:00:00"
-  fontStyle?: "retro" | "script";
+  fontStyle?:
+    | "retro"
+    | "script"
+    | "serif"
+    | "sans"
+    | "harmera"
+    | "primate"
+    | "pillar"
+    | "craze"
+    | "chunko";
+};
+
+const titleFontClasses: Record<string, string> = {
+  script: "font-script text-4xl sm:text-5xl",
+  serif: "font-serif font-bold text-3xl sm:text-4xl",
+  sans: "font-sans font-bold text-3xl sm:text-4xl",
+  harmera: "font-harmera text-3xl sm:text-4xl md:text-5xl uppercase tracking-wider",
+  primate: "font-primate text-3xl sm:text-4xl md:text-5xl uppercase tracking-widest",
+  pillar: "font-pillar text-3xl sm:text-4xl md:text-5xl uppercase tracking-widest",
+  craze: "font-craze text-3xl sm:text-4xl md:text-5xl uppercase tracking-wider",
+  chunko: "font-chunko text-3xl sm:text-4xl md:text-5xl",
+  retro: "font-display font-extrabold text-3xl sm:text-4xl md:text-5xl lowercase tracking-normal",
 };
 
 export const CountdownBlock: React.FC<CountdownBlockProps> = ({
@@ -55,12 +76,10 @@ export const CountdownBlock: React.FC<CountdownBlockProps> = ({
         transition={{ duration: 0.6 }}
         className="flex flex-col items-center justify-center"
       >
-        {/* Title in chunky retro Fraunces font or script */}
+        {/* Title */}
         <h3
           className={`${
-            fontStyle === "script"
-              ? "font-script text-4xl sm:text-5xl"
-              : "font-display font-extrabold text-3xl sm:text-4xl md:text-5xl lowercase tracking-normal"
+            titleFontClasses[fontStyle] || titleFontClasses.retro
           } text-[#b3392d] mb-4`}
         >
           {title}

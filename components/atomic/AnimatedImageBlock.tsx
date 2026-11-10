@@ -109,9 +109,9 @@ const aspectClasses = {
 };
 
 const alignClasses = {
-  center: "justify-center mx-auto",
-  left: "justify-start mr-auto",
-  right: "justify-end ml-auto",
+  center: "justify-center",
+  left: "justify-start",
+  right: "justify-end",
 };
 
 const zIndexClasses = {
@@ -408,7 +408,7 @@ export const AnimatedImageBlock: React.FC<AnimatedImageBlockProps> = ({
     return (
       <div
         ref={rootRef}
-        className={`w-full flex ${alignClasses[align] || alignClasses.center} my-2 ${zClass} ${mobileClass}`}
+        className={`flex ${alignClasses[align] || alignClasses.center} shrink-0 my-2 ${zClass} ${mobileClass}`}
       >
         {animatedElement}
       </div>

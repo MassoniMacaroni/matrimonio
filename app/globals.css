@@ -1,10 +1,55 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: 'Harmera';
+  src: url('/fonts/Harmera-Regular.otf') format('opentype');
+  font-weight: 400 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Primate';
+  src: url('/fonts/Primate-Regular.otf') format('opentype');
+  font-weight: 400 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Pillar';
+  src: url('/fonts/Pillar-Regular.otf') format('opentype');
+  font-weight: 400 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Craze';
+  src: url('/fonts/Craze-Regular.otf') format('opentype');
+  font-weight: 400 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Chunko';
+  src: url('/fonts/Chunko-Bold.otf') format('opentype');
+  font-weight: 700 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 @theme {
   --font-display: var(--font-fraunces), Georgia, serif;
   --font-serif: var(--font-fraunces), Georgia, serif;
   --font-script: var(--font-script), cursive;
   --font-sans: var(--font-sans), system-ui, sans-serif;
+  --font-harmera: var(--font-harmera), 'Harmera', system-ui, sans-serif;
+  --font-primate: var(--font-primate), 'Primate', system-ui, sans-serif;
+  --font-pillar: var(--font-pillar), 'Pillar', system-ui, sans-serif;
+  --font-craze: var(--font-craze), 'Craze', system-ui, sans-serif;
+  --font-chunko: var(--font-chunko), 'Chunko', system-ui, sans-serif;
   --color-wedding-red: #b3392d;
   --color-wedding-red-hover: #982f25;
   --color-wedding-red-subtle: #fbeee9;
@@ -38,6 +83,26 @@ body {
 
 .font-serif {
   font-family: var(--font-fraunces), Georgia, serif;
+}
+
+.font-harmera {
+  font-family: var(--font-harmera), 'Harmera', system-ui, sans-serif;
+}
+
+.font-primate {
+  font-family: var(--font-primate), 'Primate', system-ui, sans-serif;
+}
+
+.font-pillar {
+  font-family: var(--font-pillar), 'Pillar', system-ui, sans-serif;
+}
+
+.font-craze {
+  font-family: var(--font-craze), 'Craze', system-ui, sans-serif;
+}
+
+.font-chunko {
+  font-family: var(--font-chunko), 'Chunko', system-ui, sans-serif;
 }
 
 .btn-wedding-pill {

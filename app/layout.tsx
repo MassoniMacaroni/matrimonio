@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Alex_Brush, Fraunces, Playfair_Display, Plus_Jakarta_Sans } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 
 const alexBrush = Alex_Brush({
@@ -27,9 +28,44 @@ const plusJakarta = Plus_Jakarta_Sans({
   display: "swap",
 });
 
+const harmera = localFont({
+  src: "../public/fonts/Harmera-Regular.otf",
+  variable: "--font-harmera",
+  display: "swap",
+});
+
+const primate = localFont({
+  src: "../public/fonts/Primate-Regular.otf",
+  variable: "--font-primate",
+  display: "swap",
+});
+
+const pillar = localFont({
+  src: "../public/fonts/Pillar-Regular.otf",
+  variable: "--font-pillar",
+  display: "swap",
+});
+
+const craze = localFont({
+  src: "../public/fonts/Craze-Regular.otf",
+  variable: "--font-craze",
+  display: "swap",
+});
+
+const chunko = localFont({
+  src: "../public/fonts/Chunko-Bold.otf",
+  variable: "--font-chunko",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: "Jules & Jon | Wedding Celebration",
   description: "Join us in celebrating the wedding of Jules & Jon on September 18th, 2027 in Sydney.",
+  icons: {
+    icon: "/images/khheart.png",
+    shortcut: "/images/khheart.png",
+    apple: "/images/khheart.png",
+  },
 };
 
 export const viewport: Viewport = {
@@ -47,7 +83,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${fraunces.variable} ${alexBrush.variable} ${playfair.variable} ${plusJakarta.variable} h-full antialiased`}
+      className={`${fraunces.variable} ${alexBrush.variable} ${playfair.variable} ${plusJakarta.variable} ${harmera.variable} ${primate.variable} ${pillar.variable} ${craze.variable} ${chunko.variable} h-full antialiased`}
     >
       <body
         suppressHydrationWarning

@@ -22,6 +22,38 @@ export type HeroBlockProps = {
   illustrationType?: "hands" | "couple" | "champagne" | "cherries";
   showBottomDoodle?: boolean;
   showDivider?: boolean;
+  headlineFontStyle?:
+    | "retro"
+    | "script"
+    | "serif"
+    | "sans"
+    | "harmera"
+    | "primate"
+    | "pillar"
+    | "craze"
+    | "chunko";
+  namesFontStyle?:
+    | "retro"
+    | "script"
+    | "serif"
+    | "sans"
+    | "harmera"
+    | "primate"
+    | "pillar"
+    | "craze"
+    | "chunko";
+};
+
+const fontStyleClasses: Record<string, string> = {
+  retro: "font-display font-extrabold",
+  script: "font-script font-normal",
+  serif: "font-serif font-bold",
+  sans: "font-sans font-bold",
+  harmera: "font-harmera tracking-wide uppercase",
+  primate: "font-primate tracking-wider uppercase",
+  pillar: "font-pillar tracking-wide uppercase",
+  craze: "font-craze tracking-wider uppercase",
+  chunko: "font-chunko tracking-normal",
 };
 
 export const HeroBlock: React.FC<HeroBlockProps> = ({
@@ -35,6 +67,8 @@ export const HeroBlock: React.FC<HeroBlockProps> = ({
   illustrationType = "hands",
   showBottomDoodle = false,
   showDivider = true,
+  headlineFontStyle = "retro",
+  namesFontStyle = "retro",
 }) => {
   const shouldReduceMotion = useReducedMotion();
 
@@ -72,7 +106,11 @@ export const HeroBlock: React.FC<HeroBlockProps> = ({
       >
         <div className="flex items-center justify-center gap-2 mb-1">
           <SparkleCluster />
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold tracking-tight text-[#b3392d] uppercase leading-tight">
+          <h1
+            className={`text-3xl sm:text-4xl md:text-5xl ${
+              fontStyleClasses[headlineFontStyle] || fontStyleClasses.retro
+            } tracking-tight text-[#b3392d] uppercase leading-tight`}
+          >
             {headline}
           </h1>
           <SparkleCluster />
@@ -95,7 +133,11 @@ export const HeroBlock: React.FC<HeroBlockProps> = ({
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6, delay: 0.25 }}
       >
-        <h2 className="text-3xl sm:text-4xl font-display font-black tracking-normal text-[#b3392d]">
+        <h2
+          className={`text-3xl sm:text-4xl ${
+            fontStyleClasses[namesFontStyle] || fontStyleClasses.retro
+          } tracking-normal text-[#b3392d]`}
+        >
           {names}
         </h2>
         <p className="mt-2 text-base sm:text-lg font-serif font-medium tracking-wide text-[#b3392d]/90">

@@ -2,7 +2,7 @@
   "/": {
     "root": {
       "props": {
-        "title": "Jules & Jon | Save The Date · September 18, 2027"
+        "title": "Jules & Jon | Save The Date"
       }
     },
     "content": [
@@ -91,6 +91,13 @@
               "rotation": "0"
             },
             {
+              "url": "/images/JNJ16.jpg",
+              "alt": "Jules n Jon 16",
+              "caption": "",
+              "subcaption": "",
+              "rotation": "0"
+            },
+            {
               "url": "/images/JNJ12.jpeg",
               "alt": "Jules n Jon 12",
               "caption": "",
@@ -105,6 +112,13 @@
               "rotation": "0"
             },
             {
+              "url": "/images/JNJ17.jpg",
+              "alt": "Jules n Jon 17",
+              "caption": "",
+              "subcaption": "",
+              "rotation": "0"
+            },
+            {
               "url": "/images/JNJ14.jpeg",
               "alt": "Jules n Jon 14",
               "caption": "",
@@ -114,20 +128,6 @@
             {
               "url": "/images/JNJ15.jpg",
               "alt": "Jules n Jon 15",
-              "caption": "",
-              "subcaption": "",
-              "rotation": "0"
-            },
-            {
-              "url": "/images/JNJ16.jpg",
-              "alt": "Jules n Jon 16",
-              "caption": "",
-              "subcaption": "",
-              "rotation": "0"
-            },
-            {
-              "url": "/images/JNJ17.jpg",
-              "alt": "Jules n Jon 17",
               "caption": "",
               "subcaption": "",
               "rotation": "0"
@@ -231,17 +231,17 @@
               "rotation": "0"
             }
           ],
-          "speed": "fast",
+          "speed": "medium",
           "direction": "left",
           "pauseOnHover": true,
           "showControls": false,
           "fullBleed": true,
           "cardStyle": "flush",
           "cardHeight": "xs",
-          "aspectRatio": "square",
+          "aspectRatio": "auto",
           "gap": "none",
           "subtleTilt": false,
-          "showDivider": true,
+          "showDivider": false,
           "id": "ImageCarouselBlock-8e6f04b1-f741-4714-ba30-271a5c10cbb1",
           "showScrollHint": false,
           "showPauseButton": false
@@ -252,35 +252,72 @@
         "props": {
           "content": [
             {
-              "type": "HeadingBlock",
+              "type": "FlexRowBlock",
               "props": {
-                "id": "hero-headline",
-                "text": "SAVE THE DATE",
-                "as": "h1",
-                "fontStyle": "retro",
-                "size": "4xl",
-                "color": "primary",
-                "align": "center",
-                "uppercase": true,
-                "tracking": "tight",
-                "withSparkles": true,
-                "marginBottom": "sm"
-              }
-            },
-            {
-              "type": "HeadingBlock",
-              "props": {
-                "id": "hero-names",
-                "text": "Jules & Jon",
-                "as": "h2",
-                "fontStyle": "retro",
-                "size": "4xl",
-                "color": "primary",
-                "align": "center",
-                "uppercase": false,
-                "tracking": "normal",
-                "withSparkles": false,
-                "marginBottom": "sm"
+                "items": [
+                  {
+                    "type": "HeadingBlock",
+                    "props": {
+                      "id": "hero-name-jules",
+                      "text": " Julia ",
+                      "as": "h2",
+                      "fontStyle": "craze",
+                      "size": "4xl",
+                      "color": "primary",
+                      "align": "left",
+                      "uppercase": true,
+                      "tracking": "tight",
+                      "withSparkles": false,
+                      "marginBottom": "none"
+                    }
+                  },
+                  {
+                    "type": "AnimatedImageBlock",
+                    "props": {
+                      "id": "AnimatedImageBlock-dd497dbb-1a11-4d8b-9f97-f5d7a5136ecd",
+                      "imageType": "url",
+                      "illustration": "cherries",
+                      "src": "/images/khheart.png",
+                      "alt": "Wedding decoration",
+                      "frameStyle": "none",
+                      "size": "sm",
+                      "aspectRatio": "auto",
+                      "caption": "",
+                      "rotation": "0",
+                      "animation": "float-sway",
+                      "speed": "normal",
+                      "delay": "0",
+                      "hoverEffect": "lift",
+                      "placement": "inline",
+                      "align": "center",
+                      "hideOnMobile": false,
+                      "zIndex": "normal",
+                      "linkUrl": "",
+                      "newTab": false
+                    }
+                  },
+                  {
+                    "type": "HeadingBlock",
+                    "props": {
+                      "id": "hero-name-jon",
+                      "text": "JONATHAN",
+                      "as": "h2",
+                      "fontStyle": "craze",
+                      "size": "4xl",
+                      "color": "primary",
+                      "align": "right",
+                      "uppercase": true,
+                      "tracking": "tight",
+                      "withSparkles": false,
+                      "marginBottom": "none"
+                    }
+                  }
+                ],
+                "id": "hero-names-row",
+                "justify": "center-split",
+                "pinMiddle": false,
+                "gap": "lg",
+                "wrap": false
               }
             },
             {
@@ -331,36 +368,11 @@
           ],
           "id": "hero-container",
           "variant": "standard",
-          "maxWidth": "xl",
-          "paddingY": "lg",
+          "maxWidth": "full",
+          "paddingY": "none",
           "align": "center",
           "showDivider": false,
           "animate": true
-        }
-      },
-      {
-        "type": "AnimatedImageBlock",
-        "props": {
-          "imageType": "url",
-          "illustration": "cherries",
-          "src": "/images/khheart.png",
-          "alt": "Wedding decoration",
-          "frameStyle": "none",
-          "size": "md",
-          "aspectRatio": "auto",
-          "caption": "",
-          "rotation": "0",
-          "animation": "float-sway",
-          "speed": "normal",
-          "delay": "0",
-          "hoverEffect": "lift",
-          "placement": "inline",
-          "align": "center",
-          "hideOnMobile": false,
-          "zIndex": "normal",
-          "linkUrl": "",
-          "newTab": false,
-          "id": "AnimatedImageBlock-dd497dbb-1a11-4d8b-9f97-f5d7a5136ecd"
         }
       },
       {
@@ -373,8 +385,8 @@
                 "id": "std-title",
                 "text": "save the date",
                 "as": "h3",
-                "fontStyle": "retro",
-                "size": "4xl",
+                "fontStyle": "craze",
+                "size": "6xl",
                 "color": "primary",
                 "align": "center",
                 "uppercase": false,
@@ -469,9 +481,9 @@
           "maxWidth": "full",
           "borderStyle": "none",
           "shadowStyle": "none",
-          "tiltStyle": "subtle",
+          "tiltStyle": "none",
           "hoverEffect": "scale",
-          "baseSize": "md",
+          "baseSize": "sm",
           "lineDivider": "none",
           "id": "StickerRibbonBlock-30d3b2cc-0643-417e-959a-673c96c5a32e"
         }

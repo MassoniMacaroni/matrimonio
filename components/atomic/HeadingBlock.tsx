@@ -6,8 +6,18 @@ import { SparkleCluster } from "../decorations/Illustrations";
 export type HeadingBlockProps = {
   text?: string;
   as?: "h1" | "h2" | "h3" | "h4" | "p";
-  fontStyle?: "retro" | "script" | "serif" | "sans" | "mono";
-  size?: "sm" | "base" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl";
+  fontStyle?:
+    | "retro"
+    | "script"
+    | "serif"
+    | "sans"
+    | "mono"
+    | "harmera"
+    | "primate"
+    | "pillar"
+    | "craze"
+    | "chunko";
+  size?: "sm" | "base" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl" | "6xl";
   color?: "primary" | "body" | "muted";
   align?: "center" | "left" | "right";
   uppercase?: boolean;
@@ -16,12 +26,17 @@ export type HeadingBlockProps = {
   marginBottom?: "none" | "sm" | "md" | "lg";
 };
 
-const fontStyleClasses = {
+const fontStyleClasses: Record<string, string> = {
   retro: "font-display font-extrabold",
   script: "font-script font-normal",
   serif: "font-serif font-bold",
   sans: "font-sans font-bold",
   mono: "font-mono font-medium",
+  harmera: "font-harmera tracking-wide",
+  primate: "font-primate tracking-wider",
+  pillar: "font-pillar tracking-wide",
+  craze: "font-craze tracking-wider",
+  chunko: "font-chunko tracking-normal",
 };
 
 const sizeClasses = {
@@ -31,8 +46,9 @@ const sizeClasses = {
   xl: "text-xl sm:text-2xl",
   "2xl": "text-2xl sm:text-3xl",
   "3xl": "text-3xl sm:text-4xl",
-  "4xl": "text-3xl sm:text-4xl md:text-5xl",
-  "5xl": "text-4xl sm:text-5xl md:text-6xl",
+  "4xl": "text-2xl sm:text-3xl md:text-4xl lg:text-5xl",
+  "5xl": "text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl",
+  "6xl": "text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl",
 };
 
 const colorClasses = {
@@ -81,7 +97,7 @@ export const HeadingBlock: React.FC<HeadingBlockProps> = ({
         alignClasses[align] || alignClasses.center
       } ${trackingClasses[tracking] || trackingClasses.normal} ${
         uppercase ? "uppercase" : ""
-      } ${mbClasses[marginBottom] || mbClasses.sm} leading-tight`}
+      } ${mbClasses[marginBottom] || mbClasses.sm} leading-tight whitespace-nowrap`}
     >
       {text}
     </Tag>

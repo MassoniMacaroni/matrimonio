@@ -10,6 +10,28 @@ export type ButtonBlockProps = {
   download?: string;
   align?: "center" | "left" | "right";
   newTab?: boolean;
+  fontStyle?:
+    | "sans"
+    | "serif"
+    | "script"
+    | "retro"
+    | "harmera"
+    | "primate"
+    | "pillar"
+    | "craze"
+    | "chunko";
+};
+
+const fontStyleClasses: Record<string, string> = {
+  sans: "font-sans",
+  serif: "font-serif",
+  script: "font-script text-base sm:text-lg",
+  retro: "font-display font-extrabold",
+  harmera: "font-harmera tracking-wide uppercase",
+  primate: "font-primate tracking-wider uppercase",
+  pillar: "font-pillar tracking-wide uppercase",
+  craze: "font-craze tracking-wider uppercase",
+  chunko: "font-chunko tracking-normal",
 };
 
 const alignClasses = {
@@ -26,6 +48,7 @@ export const ButtonBlock: React.FC<ButtonBlockProps> = ({
   download,
   align = "center",
   newTab = false,
+  fontStyle = "sans",
 }) => {
   const renderIcon = () => {
     switch (icon) {
@@ -101,7 +124,7 @@ export const ButtonBlock: React.FC<ButtonBlockProps> = ({
         target={newTab ? "_blank" : undefined}
         rel={newTab ? "noopener noreferrer" : undefined}
         download={download}
-        className={getStyleClass()}
+        className={`${getStyleClass()} ${fontStyleClasses[fontStyle] || ""}`}
       >
         {renderIcon()}
         <span>{label}</span>
