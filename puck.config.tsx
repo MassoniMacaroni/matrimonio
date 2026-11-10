@@ -1357,6 +1357,7 @@ export const config: Config<Props> = {
             { label: "Slow Drift (Relaxed)", value: "slow" },
             { label: "Medium", value: "medium" },
             { label: "Fast", value: "fast" },
+            { label: "Turbo (Brisk Reel)", value: "turbo" },
             { label: "Paused (Manual Only)", value: "paused" },
           ],
         },

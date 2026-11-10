@@ -21,7 +21,7 @@ export type ImageCarouselBlockProps = {
   images?: CarouselImageItem[];
 
   // Behavior
-  speed?: "slow" | "medium" | "fast" | "paused";
+  speed?: "slow" | "medium" | "fast" | "turbo" | "paused";
   direction?: "left" | "right";
   pauseOnHover?: boolean;
   showControls?: boolean;
@@ -107,9 +107,10 @@ export const defaultCarouselImages: CarouselImageItem[] = [
 
 const speedMap = {
   paused: 0,
-  slow: 25,
-  medium: 50,
-  fast: 85,
+  slow: 35,
+  medium: 75,
+  fast: 140,
+  turbo: 220,
 };
 
 const heightClasses = {
@@ -169,11 +170,29 @@ export const ImageCarouselBlock: React.FC<ImageCarouselBlockProps> = ({
   const hasDraggedRef = useRef(false);
   const isInteractingTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const isInteractingRef = useRef(false);
+  const currentScrollXRef = useRef(0);
 
   const safeImages = images && images.length > 0 ? images : defaultCarouselImages;
 
   // We repeat the images 3 times to allow infinite continuous looping in both directions
   const repeatedImages = [...safeImages, ...safeImages, ...safeImages];
+
+  // Pause auto-sliding temporarily when user manually interacts via touch, wheel, drag, or button
+  const markUserInteraction = useCallback((resumeDelay = 1200) => {
+    isInteractingRef.current = true;
+    if (scrollRef.current) {
+      currentScrollXRef.current = scrollRef.current.scrollLeft;
+    }
+    if (isInteractingTimeoutRef.current) {
+      clearTimeout(isInteractingTimeoutRef.current);
+    }
+    isInteractingTimeoutRef.current = setTimeout(() => {
+      if (scrollRef.current) {
+        currentScrollXRef.current = scrollRef.current.scrollLeft;
+      }
+      isInteractingRef.current = false;
+    }, resumeDelay);
+  }, []);
 
   // Measure the width of one complete set of images
   const measureSetWidth = useCallback(() => {
@@ -185,6 +204,9 @@ export const ImageCarouselBlock: React.FC<ImageCarouselBlockProps> = ({
       // Initialize to the middle set if currently at 0
       if (scrollRef.current.scrollLeft === 0 && oneSet > 0) {
         scrollRef.current.scrollLeft = oneSet;
+        currentScrollXRef.current = oneSet;
+      } else {
+        currentScrollXRef.current = scrollRef.current.scrollLeft;
       }
     }
   }, []);
@@ -213,7 +235,7 @@ export const ImageCarouselBlock: React.FC<ImageCarouselBlockProps> = ({
     let animationFrameId: number;
     let lastTime: number | null = null;
 
-    const baseSpeed = speedMap[speed] || speedMap.slow;
+    const baseSpeed = speedMap[speed] ?? speedMap.slow;
 
     const tick = (currentTime: number) => {
       if (lastTime === null) {
@@ -232,16 +254,16 @@ export const ImageCarouselBlock: React.FC<ImageCarouselBlockProps> = ({
 
       if (canAutoScroll && singleSetWidth > 0) {
         const movePixels = baseSpeed * deltaTime * (direction === "right" ? -1 : 1);
-        el.scrollLeft += movePixels;
-      }
+        currentScrollXRef.current += movePixels;
 
-      // Seamless infinite looping wrap
-      if (singleSetWidth > 0) {
-        if (el.scrollLeft >= singleSetWidth * 2) {
-          el.scrollLeft -= singleSetWidth;
-        } else if (el.scrollLeft <= singleSetWidth * 0.1) {
-          el.scrollLeft += singleSetWidth;
+        // Seamless infinite looping wrap
+        if (currentScrollXRef.current >= singleSetWidth * 2) {
+          currentScrollXRef.current -= singleSetWidth;
+        } else if (currentScrollXRef.current <= singleSetWidth * 0.1) {
+          currentScrollXRef.current += singleSetWidth;
         }
+
+        el.scrollLeft = currentScrollXRef.current;
       }
 
       animationFrameId = requestAnimationFrame(tick);
@@ -263,25 +285,16 @@ export const ImageCarouselBlock: React.FC<ImageCarouselBlockProps> = ({
     singleSetWidth,
   ]);
 
-  // Handle native user wheel/trackpad scrolling and touch interactions
+  // Handle native scroll wrap checks
   const handleScroll = () => {
-    isInteractingRef.current = true;
-    if (isInteractingTimeoutRef.current) {
-      clearTimeout(isInteractingTimeoutRef.current);
-    }
-    // Resume auto-sliding 900ms after user finishes scrolling
-    isInteractingTimeoutRef.current = setTimeout(() => {
-      isInteractingRef.current = false;
-    }, 900);
-
-    // Also enforce wrapping bounds during manual scroll
     const el = scrollRef.current;
-    if (el && singleSetWidth > 0) {
-      if (el.scrollLeft >= singleSetWidth * 2) {
-        el.scrollLeft -= singleSetWidth;
-      } else if (el.scrollLeft <= singleSetWidth * 0.1) {
-        el.scrollLeft += singleSetWidth;
-      }
+    if (!el || singleSetWidth <= 0) return;
+    if (el.scrollLeft >= singleSetWidth * 2) {
+      el.scrollLeft -= singleSetWidth;
+      currentScrollXRef.current = el.scrollLeft;
+    } else if (el.scrollLeft <= singleSetWidth * 0.1) {
+      el.scrollLeft += singleSetWidth;
+      currentScrollXRef.current = el.scrollLeft;
     }
   };
 
@@ -292,6 +305,7 @@ export const ImageCarouselBlock: React.FC<ImageCarouselBlockProps> = ({
     hasDraggedRef.current = false;
     dragStartXRef.current = e.pageX - scrollRef.current.offsetLeft;
     dragStartScrollLeftRef.current = scrollRef.current.scrollLeft;
+    currentScrollXRef.current = scrollRef.current.scrollLeft;
   };
 
   const handleMouseMove = (e: React.MouseEvent) => {
@@ -302,31 +316,34 @@ export const ImageCarouselBlock: React.FC<ImageCarouselBlockProps> = ({
     if (Math.abs(walk) > 4) {
       hasDraggedRef.current = true;
     }
-    scrollRef.current.scrollLeft = dragStartScrollLeftRef.current - walk;
+    const target = dragStartScrollLeftRef.current - walk;
+    scrollRef.current.scrollLeft = target;
+    currentScrollXRef.current = target;
   };
 
   const handleMouseUpOrLeave = () => {
     if (isDragging) {
       setIsDragging(false);
+      markUserInteraction(900);
     }
   };
 
   // Step scroll buttons (Previous / Next)
   const handleScrollStep = (directionStep: "prev" | "next") => {
     if (!scrollRef.current) return;
-    isInteractingRef.current = true;
-    if (isInteractingTimeoutRef.current) {
-      clearTimeout(isInteractingTimeoutRef.current);
-    }
-    isInteractingTimeoutRef.current = setTimeout(() => {
-      isInteractingRef.current = false;
-    }, 1500);
+    markUserInteraction(1500);
 
     const stepAmount = 340;
     scrollRef.current.scrollBy({
       left: directionStep === "next" ? stepAmount : -stepAmount,
       behavior: "smooth",
     });
+
+    setTimeout(() => {
+      if (scrollRef.current) {
+        currentScrollXRef.current = scrollRef.current.scrollLeft;
+      }
+    }, 400);
   };
 
   // Get rotation styling for polaroid cards
@@ -401,6 +418,14 @@ export const ImageCarouselBlock: React.FC<ImageCarouselBlockProps> = ({
         <div
           ref={scrollRef}
           onScroll={handleScroll}
+          onWheel={() => markUserInteraction(1000)}
+          onTouchStart={() => {
+            isInteractingRef.current = true;
+            if (scrollRef.current) {
+              currentScrollXRef.current = scrollRef.current.scrollLeft;
+            }
+          }}
+          onTouchEnd={() => markUserInteraction(1000)}
           onMouseDown={handleMouseDown}
           onMouseMove={handleMouseMove}
           onMouseUp={handleMouseUpOrLeave}
